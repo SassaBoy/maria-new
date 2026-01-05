@@ -811,308 +811,179 @@
             transform: translateY(0);
         }
 
-        .intro-text-section {
-    padding: 12% 8%;
-    background: #fafafa;
+      /* --- CORE STYLING --- */
+.action-section {
+    background: #000; /* Dark background as requested */
+    padding: 8rem 5%;
     position: relative;
-}
-
-.intro-container {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: left;
-}
-
-.intro-paragraphs {
-    margin-bottom: 6rem;
-}
-
-.intro-para {
-    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
-    line-height: 1.7;
-    font-weight: 300;
-    color: #222;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
-}
-
-.intro-para.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.delay-1 { transition-delay: 0.2s; }
-.delay-2 { transition-delay: 0.4s; }
-.delay-3 { transition-delay: 0.6s; }
-
-.intro-quote {
-    text-align: center;
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.3;
-    font-weight: 300;
-    color: #000;
-    position: relative;
-    padding: 3rem 0;
-}
-
-.intro-quote blockquote {
-    margin: 0;
-    font-style: normal;
-}
-
-.intro-quote strong {
-    font-weight: 600;
-}
-
-.quote-line {
-    display: block;
-    width: 80px;
-    height: 3px;
-    background: #000;
-    margin: 2rem auto;
-}
-
-/* Trigger fade on scroll (add to existing reveal script or use same class) */
-.intro-para { opacity: 0; transform: translateY(30px); }
-.intro-para.active { opacity: 1; transform: translateY(0); }
-
-.about-journey-section {
-    padding: 12% 8%;
-    background: #fcfaf7; /* Soft warm off-white for personal touch */
-}
-
-.about-journey-container {
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.about-journey-section h2 {
-    text-align: center;
-    margin-bottom: 6rem;
-}
-
-.journey-block {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 8rem;
-    align-items: center;
-}
-
-.journey-block.reverse {
-    grid-template-columns: 1fr 1fr;
-    direction: rtl;
-}
-
-.journey-block.reverse .journey-text {
-    direction: ltr;
-}
-
-.journey-text {
-    max-width: 600px;
-    justify-self: end;
-}
-
-.journey-para {
-    font-size: clamp(1.15rem, 1.8vw, 1.3rem);
-    line-height: 1.9;
-    color: #333;
-    margin-bottom: 2rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-}
-
-.journey-para.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.delay-1 { transition-delay: 0.2s; }
-.delay-2 { transition-delay: 0.4s; }
-.delay-3 { transition-delay: 0.6s; }
-.delay-4 { transition-delay: 0.8s; }
-.delay-5 { transition-delay: 1.0s; }
-.delay-6 { transition-delay: 1.2s; }
-.delay-7 { transition-delay: 1.4s; }
-.delay-8 { transition-delay: 1.6s; }
-.delay-9 { transition-delay: 1.8s; }
-
-.journey-image {
-    height: 500px;
     overflow: hidden;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.4s ease, transform 1.4s ease;
+    color: #fff; /* Ensure all general text is white */
 }
 
-.journey-image.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.journey-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(30%) brightness(1.05);
-    transition: transform 0.8s ease, filter 0.6s ease;
-}
-
-.journey-image:hover img {
-    transform: scale(1.05);
-    filter: grayscale(0%);
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .journey-block, .journey-block.reverse {
-        grid-template-columns: 1fr;
-        direction: ltr;
-    }
-    
-    .journey-text {
-        justify-self: center;
-        max-width: 800px;
-        margin-bottom: 3rem;
-    }
-    
-    .journey-image {
-        height: 400px;
-    }
-}
-
-/* Intro Text Section - Redesigned for uniqueness and visual impact */
-.intro-text-section {
-    padding: 0 8%;
-    background: #fff;
-    overflow: hidden;
-}
-
-.intro-container {
-    max-width: 1600px;
-    margin: 0 auto;
-}
-
-/* Hero with background image */
-.intro-hero {
-    position: relative;
-    height: 80vh;
-    min-height: 600px;
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 6rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-.hero-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero-overlay {
+.action-backdrop {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px; height: 1000px;
+    background: radial-gradient(circle, rgba(255, 0, 84, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
 }
 
-.hero-content {
-    position: absolute;
-    bottom: 10%;
-    left: 8%;
-    max-width: 700px;
-    color: #fff;
+.action-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
 }
 
-.hero-title {
-    font-size: clamp(3rem, 6vw, 5.5rem);
+/* --- TEXT & HEADLINES --- */
+.action-headline {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 700;
-    letter-spacing: -2px;
     line-height: 1.1;
-    margin-bottom: 1.5rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
-.hero-subtitle {
-    font-size: 1.4rem;
-    font-weight: 300;
-    opacity: 0.95;
+.headline-emphasis {
+    background: linear-gradient(135deg, #ff0054 0%, #ff3377 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.action-tagline {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.7); /* Light gray for readability */
+    max-width: 800px;
+    margin: 0 auto 6rem;
+    text-align: center;
     line-height: 1.6;
 }
 
-/* Alternating grid for text + visuals */
-.intro-body {
-    margin-bottom: 6rem;
-}
-
-.intro-grid {
-    display: flex;
+/* --- GRIDS --- */
+.action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
     align-items: center;
-    gap: 6rem;
     margin-bottom: 8rem;
 }
 
-.intro-grid.reverse {
-    flex-direction: row-reverse;
+.action-grid.reverse {
+    direction: rtl; /* Simple way to swap image/text position */
 }
 
-.intro-text {
-    flex: 1;
-    min-width: 300px;
+.action-grid.reverse .action-text-content {
+    direction: ltr; /* Reset text direction for content */
 }
 
-.intro-para {
-    font-size: 1.25rem;
+.action-paragraph {
+    font-size: 1.15rem;
     line-height: 1.8;
-    color: #333;
-    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.85); /* Visible text on black */
+    margin-bottom: 1.5rem;
 }
 
-.intro-visual {
-    flex: 1;
-    min-width: 300px;
+/* --- CARDS & VISUALS --- */
+.action-visual-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    position: relative;
+    transition: all 0.5s ease;
 }
 
-.intro-visual img {
+.action-visual-card img {
     width: 100%;
-    height: auto;
     display: block;
     transition: transform 0.5s ease;
 }
 
-.intro-visual:hover img {
-    transform: scale(1.05);
+.action-visual-card:hover {
+    border-color: rgba(255, 0, 84, 0.4);
+    transform: translateY(-10px);
 }
 
-/* Quote Section */
-.intro-quote-section {
-    position: relative;
-    height: 60vh;
-    min-height: 500px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-
-.quote-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.quote-overlay {
+.card-glow {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
+    top: 50%; left: 50%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255, 0, 84, 0.3) 0%, transparent 70%);
+    filter: blur(40px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.action-visual-card:hover .card-glow { opacity: 1; }
+
+/* --- COMMUNICATION HIGHLIGHT --- */
+.communication-statement {
+    text-align: center;
+    padding: 6rem 2rem;
+    margin: 4rem 0 8rem;
+    border-top: 1px solid rgba(255, 0, 84, 0.2);
+    border-bottom: 1px solid rgba(255, 0, 84, 0.2);
+    background: rgba(255, 0, 84, 0.02);
+}
+
+.statement-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: #fff;
+    margin-bottom: 3rem;
+}
+
+.play-button {
+    background: transparent;
+    border: 2px solid #ff0054;
+    color: #fff;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.play-button:hover {
+    background: #ff0054;
+    box-shadow: 0 0 25px rgba(255, 0, 84, 0.4);
+}
+
+/* --- FINAL QUOTE SECTION --- */
+.intro-quote-section {
+    text-align: center;
+    padding: 8rem 0;
+}
+
+.main-quote {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    color: #fff;
+    line-height: 1.2;
+}
+
+.main-quote strong {
+    color: #ff0054;
+    font-weight: 800;
+    display: block;
+    margin-top: 10px;
+    text-shadow: 0 0 15px rgba(255, 0, 84, 0.3);
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 968px) {
+    .action-grid, .action-grid.reverse {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
 }
 
 .main-quote {
@@ -1158,231 +1029,1994 @@
         font-size: 1.15rem;
     }
 }
+
+/* Navigation Styles */
+.primary-navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: black;
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 5%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.navigation-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-logo {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 8px;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.brand-logo:hover {
+    letter-spacing: 12px;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.navigation-menu {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+.navigation-menu li a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navigation-menu li a.nav-active {
+    color: #ff0054;
+}
+
+.navigation-menu li a.nav-active::after {
+    width: 100%;
+}
+
+.navigation-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ff0054;
+    transition: width 0.3s ease;
+}
+
+.navigation-menu li a:hover {
+    color: #ff0054;
+}
+
+.navigation-menu li a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section Styles */
+.landing-showcase {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    padding: 8rem 5% 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    background: #000;
+}
+
+.landing-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: black;
+    pointer-events: none;
+    animation: gradientShift 15s ease-in-out infinite;
+}
+
+.landing-showcase::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 300px;
+    height: 300px;
+    background: black;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: float 8s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(10%); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-30px); }
+}
+
+.showcase-content {
+    z-index: 2;
+}
+
+.content-wrapper {
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.greeting-text {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1rem;
+    letter-spacing: 3px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.main-heading {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: #fff;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+}
+
+.dynamic-role {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 3rem;
+    height: 70px;
+}
+
+.role-prefix {
+    color: #fff;
+}
+
+.role-dynamic {
+    color: #ff0054;
+    min-width: 220px;
+    text-shadow: 0 0 20px rgba(255, 0, 84, 0.4);
+}
+
+.typing-cursor {
+    color: #ff0054;
+    animation: blink 1s step-end infinite;
+    font-weight: 300;
+    font-size: 2.5rem;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.explore-button {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 1.2rem 3rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    letter-spacing: 1px;
+    border-radius: 0;
+}
+
+.explore-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 84, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.explore-button:hover::before {
+    left: 100%;
+}
+
+.explore-button:hover {
+    border-color: #ff0054;
+    background: rgba(255, 0, 84, 0.05);
+    box-shadow: 0 0 40px rgba(255, 0, 84, 0.2), inset 0 0 20px rgba(255, 0, 84, 0.1);
+    transform: translateY(-3px);
+    color: #fff;
+}
+
+.button-arrow {
+    transition: transform 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.explore-button:hover .button-arrow {
+    transform: translateX(8px);
+}
+
+.showcase-visual {
+    position: relative;
+    z-index: 2;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    margin-left: auto;
+    animation: fadeInRight 1s ease-out 0.3s both;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.image-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 130%;
+    height: 130%;
+    background: radial-gradient(circle, rgba(255, 0, 84, 0.25) 0%, transparent 70%);
+    filter: blur(70px);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 0.6; 
+        transform: translate(-50%, -50%) scale(1); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1.15); 
+    }
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 1;
+    border-radius: 0;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(255, 0, 84, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.image-container:hover img {
+    transform: translateY(-10px);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7), 0 0 80px rgba(255, 0, 84, 0.25);
+}
+
+/* Decorative Elements */
+.landing-showcase .content-wrapper::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, #ff0054, transparent);
+    animation: lineGlow 3s ease-in-out infinite;
+}
+
+@keyframes lineGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .navigation-menu {
+        gap: 2rem;
+    }
+    
+    .landing-showcase {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 6rem;
+    }
+    
+    .main-heading {
+        font-size: 3rem;
+    }
+    
+    .dynamic-role {
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+    
+    .image-container {
+        margin: 3rem auto 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .brand-logo {
+        font-size: 1.5rem;
+    }
+    
+    .navigation-menu {
+        gap: 1.5rem;
+    }
+    
+    .navigation-menu li a {
+        font-size: 0.9rem;
+    }
+    
+    .main-heading {
+        font-size: 2.2rem;
+    }
+    
+    .dynamic-role {
+        font-size: 1.2rem;
+        flex-wrap: wrap;
+    }
+}
+.profile-section {
+    background: #000;
+    padding: 8rem 5%;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 0, 84, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(100px);
+}
+
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 45% 55%;
+    gap: 6rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Visual Section */
+.profile-visual {
+    position: relative;
+    animation: fadeInLeft 1s ease-out;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.visual-frame {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+.frame-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 110%;
+    background: radial-gradient(circle, rgba(255, 0, 84, 0.2) 0%, transparent 70%);
+    filter: blur(60px);
+    animation: glowPulse 5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.visual-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 1;
+    filter: grayscale(10%);
+    transition: all 0.5s ease;
+}
+
+.visual-frame:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
+.frame-accent {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: 20px;
+    bottom: 20px;
+    border: 2px solid rgba(255, 0, 84, 0.2);
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.visual-frame:hover .frame-accent {
+    border-color: rgba(255, 0, 84, 0.5);
+    top: -25px;
+    left: -25px;
+    right: 25px;
+    bottom: 25px;
+}
+
+/* Narrative Section */
+.profile-narrative {
+    animation: fadeInRight 1s ease-out 0.2s both;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.narrative-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.label-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, #ff0054, transparent);
+}
+
+.label-text {
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    color: #ff0054;
+    font-weight: 600;
+}
+
+.narrative-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 2.5rem;
+}
+
+.title-highlight {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+}
+
+.narrative-content {
+    margin-bottom: 3rem;
+}
+
+.narrative-intro {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.narrative-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1.5rem;
+}
+
+.narrative-body strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.narrative-emphasis {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    padding-left: 1.5rem;
+    border-left: 3px solid #ff0054;
+    margin-top: 2rem;
+    font-style: italic;
+}
+
+/* Stats Section */
+.narrative-stats {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ff0054;
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(255, 0, 84, 0.3);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+/* Responsive Design */
+@media (max-width: 1100px) {
+    .profile-container {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    
+    .visual-frame {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .narrative-title {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-section {
+        padding: 5rem 5%;
+    }
+    
+    .narrative-title {
+        font-size: 2.5rem;
+    }
+    
+    .narrative-intro,
+    .narrative-body {
+        font-size: 1rem;
+    }
+    
+    .narrative-stats {
+        gap: 2rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .narrative-title {
+        font-size: 2rem;
+    }
+    
+    .narrative-stats {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+    
+    .stat-divider {
+        display: none;
+    }
+    
+    .frame-accent {
+        top: -10px;
+        left: -10px;
+        right: 10px;
+        bottom: 10px;
+    }
+    
+    .visual-frame:hover .frame-accent {
+        top: -15px;
+        left: -15px;
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+/* Differentiator Section */
+.distinction-showcase {
+    background: #000;
+    padding: 10rem 5% 8rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.distinction-backdrop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 1000px;
+    background: radial-gradient(circle, rgba(255, 0, 84, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+}
+
+.distinction-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Intro Section */
+.distinction-intro {
+    text-align: center;
+    margin-bottom: 6rem;
+    animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.intro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 2rem;
+    background: rgba(255, 0, 84, 0.1);
+    border: 1px solid rgba(255, 0, 84, 0.3);
+    border-radius: 50px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.intro-badge:hover {
+    background: rgba(255, 0, 84, 0.15);
+    border-color: rgba(255, 0, 84, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 0, 84, 0.2);
+}
+
+.badge-icon {
+    font-size: 1.2rem;
+    color: #ff0054;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.badge-label {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+}
+
+.distinction-headline {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.headline-emphasis {
+    background: linear-gradient(135deg, #ff0054 0%, #ff3377 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.distinction-tagline {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Matrix Grid */
+.distinction-matrix {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+}
+
+.matrix-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.matrix-card:nth-child(1) { animation-delay: 0.1s; }
+.matrix-card:nth-child(2) { animation-delay: 0.2s; }
+.matrix-card:nth-child(3) { animation-delay: 0.3s; }
+.matrix-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.matrix-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ff0054, transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+.matrix-card:hover::before {
+    transform: scaleX(1);
+}
+
+.matrix-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 0, 84, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 0, 84, 0.1);
+}
+
+.card-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 0, 84, 0.15) 0%, transparent 70%);
+    filter: blur(60px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.matrix-card:hover .card-glow {
+    opacity: 1;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.card-index {
+    font-size: 3rem;
+    font-weight: 700;
+    color: rgba(255, 0, 84, 0.3);
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.matrix-card:hover .card-index {
+    color: #ff0054;
+    text-shadow: 0 0 30px rgba(255, 0, 84, 0.5);
+}
+
+.card-icon-container {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 0, 84, 0.1);
+    border: 2px solid rgba(255, 0, 84, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.matrix-card:hover .card-icon-container {
+    background: rgba(255, 0, 84, 0.2);
+    border-color: #ff0054;
+    transform: rotate(360deg) scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 0, 84, 0.4);
+}
+
+.card-icon {
+    font-size: 1.8rem;
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+.matrix-card:hover .card-title {
+    color: #fff;
+}
+
+.card-description {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+}
+
+.matrix-card:hover .card-description {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .distinction-showcase {
+        padding: 8rem 5% 6rem;
+    }
+    
+    .distinction-headline {
+        font-size: 3.5rem;
+    }
+    
+    .distinction-matrix {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .matrix-card {
+        padding: 2.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .distinction-showcase {
+        padding: 6rem 5% 4rem;
+    }
+    
+    .distinction-intro {
+        margin-bottom: 4rem;
+    }
+    
+    .distinction-headline {
+        font-size: 2.5rem;
+    }
+    
+    .distinction-tagline {
+        font-size: 1rem;
+    }
+    
+    .matrix-card {
+        padding: 2rem;
+    }
+    
+    .card-index {
+        font-size: 2.5rem;
+    }
+    
+    .card-icon-container {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .card-icon {
+        font-size: 1.5rem;
+    }
+    
+    .card-title {
+        font-size: 1.5rem;
+    }
+    
+    .card-description {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-badge {
+        padding: 0.7rem 1.5rem;
+    }
+    
+    .badge-label {
+        font-size: 0.75rem;
+    }
+    
+    .distinction-headline {
+        font-size: 2rem;
+    }
+}
+
+/* --- SECTOR EXPERTISE CSS --- */
+.sector-expertise {
+    background: #000;
+    padding: 10rem 5%;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+}
+
+.sector-wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.sector-header {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.sector-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 0, 84, 0.1);
+    border: 1px solid rgba(255, 0, 84, 0.3);
+    padding: 8px 20px;
+    border-radius: 50px;
+    margin-bottom: 2rem;
+}
+
+.sector-badge-dot {
+    width: 8px;
+    height: 8px;
+    background: #ff0054;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff0054;
+}
+
+.sector-badge-text {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.sector-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1.5rem;
+}
+
+.sector-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* --- THE GRID --- */
+.sector-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+/* --- THE CARDS --- */
+.sector-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3.5rem 2.5rem;
+    border-radius: 20px;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.sector-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 0, 84, 0.5);
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+}
+
+.sector-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+}
+
+.sector-number {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ff0054;
+    font-family: monospace;
+}
+
+.sector-icon-box {
+    font-size: 3rem; /* Large prominent icon as requested */
+    background: rgba(255, 0, 84, 0.1);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 0, 84, 0.2);
+    transition: all 0.5s ease;
+}
+
+.sector-card:hover .sector-icon-box {
+    transform: rotateY(180deg) scale(1.1);
+    background: rgba(255, 0, 84, 0.2);
+    box-shadow: 0 0 20px rgba(255, 0, 84, 0.3);
+}
+
+.sector-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.sector-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sector-list li {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 20px;
+}
+
+.sector-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #ff0054;
+}
+
+/* Card Glow Effect */
+.sector-glow {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255, 0, 84, 0.15) 0%, transparent 70%);
+    filter: blur(40px);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.sector-card:hover .sector-glow {
+    opacity: 1;
+}
+
+/* Global Section Background Glow */
+.sector-bg-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 0, 84, 0.03) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .sector-expertise { padding: 6rem 5%; }
+    .sector-grid { grid-template-columns: 1fr; }
+}
+
+/* --- IMPACT PROJECTS CSS --- */
+.impact-section {
+    background: #000;
+    padding: 6rem 5% 10rem; /* Reduced top padding for efficiency */
+    color: #fff;
+    position: relative;
+}
+
+.impact-wrapper {
+    max-width: 1400px; /* Wider container for better space usage */
+    margin: 0 auto;
+}
+
+.impact-header {
+    margin-bottom: 4rem;
+}
+
+.impact-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 15px;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+}
+
+.impact-dot {
+    width: 6px; height: 6px;
+    background: #ff0054;
+    border-radius: 50%;
+}
+
+.impact-label {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+.impact-headline {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 1rem;
+}
+
+.impact-subheadline {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+}
+
+/* --- THE EFFICIENT GRID --- */
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Columns saves vertical space */
+    gap: 2rem;
+}
+
+.impact-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.impact-card:hover {
+    border-color: #ff0054;
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.impact-image-box {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.impact-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.impact-card:hover .impact-image-box img {
+    transform: scale(1.1);
+}
+
+.impact-overlay {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #ff0054;
+}
+
+.impact-num {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #ff0054;
+}
+
+.impact-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.impact-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+    color: #fff;
+}
+
+.impact-desc {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+}
+
+/* --- RESPONSIVENESS --- */
+@media (max-width: 1100px) {
+    .impact-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .impact-grid { grid-template-columns: 1fr; }
+    .impact-section { padding: 4rem 5% 6rem; }
+}
+
+/* --- PEOPLE-CENTRED APPROACH CSS --- */
+.human-approach {
+    background: #000;
+    padding: 8rem 5%;
+    color: #fff;
+    position: relative;
+}
+
+.human-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.human-header {
+    margin-bottom: 6rem;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.human-line {
+    height: 1px;
+    width: 60px;
+    background: #ff0054;
+}
+
+.human-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+}
+
+/* --- THE PANEL SYSTEM --- */
+.human-panel {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Image wider than text for impact */
+    gap: 0; /* Removing gap for a "Split Screen" look */
+    margin-bottom: 4rem; /* Reduced margin for efficiency */
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.human-panel.reverse {
+    grid-template-columns: 1fr 1.2fr;
+}
+
+/* Image Side */
+.human-image-side {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+}
+
+.human-image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition: all 0.7s ease;
+}
+
+.human-panel:hover .human-image-side img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.human-number {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Text Side */
+.human-text-side {
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.human-panel.reverse .human-image-side { order: 2; }
+.human-panel.reverse .human-text-side { order: 1; }
+
+.human-lead {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ff0054;
+    line-height: 1.4;
+    margin-bottom: 2rem;
+}
+
+.human-text-side p:not(.human-lead) {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .human-panel, .human-panel.reverse {
+        grid-template-columns: 1fr;
+    }
+    .human-image-side { height: 350px; }
+    .human-panel.reverse .human-image-side { order: 1; }
+    .human-panel.reverse .human-text-side { order: 2; }
+    .human-text-side { padding: 3rem 2rem; }
+}
+
+@media (max-width: 768px) {
+    .human-header { margin-bottom: 3rem; }
+    .human-lead { font-size: 1.25rem; }
+}
+
+/* --- CONTACT/CONNECT SECTION CSS --- */
+.connect-section {
+    background: #000;
+    padding: 10rem 5%;
+    position: relative;
+    overflow: hidden;
+}
+
+.connect-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.connect-content {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+}
+
+/* Text Side */
+.connect-text-side {
+    padding: 5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.connect-badge {
+    color: #ff0054;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.connect-title {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.connect-message {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+.connect-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.connect-button {
+    padding: 1.2rem 2.8rem;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.connect-button:hover {
+    background: #ff0054;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 0, 84, 0.3);
+}
+
+.connect-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.connect-link:hover {
+    color: #ff0054;
+}
+
+/* Image Side */
+.connect-image-side {
+    position: relative;
+    height: 100%;
+    min-height: 500px;
+}
+
+.coffee-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8) contrast(1.1);
+}
+
+.image-overlay-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 100%);
+    box-shadow: inset 100px 0 150px -50px #000; /* Blends image into the text box */
+}
+
+/* Responsive Layout */
+@media (max-width: 1024px) {
+    .connect-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .connect-text-side {
+        padding: 4rem 2rem;
+        order: 2;
+    }
+    
+    .connect-image-side {
+        order: 1;
+        min-height: 350px;
+    }
+    
+    .image-overlay-glow {
+        background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+        box-shadow: inset 0 -100px 150px -50px #000;
+    }
+
+    .connect-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+}
     </style>
 </head>
 <body>
-    <nav id="navbar">
-        <div class="nav-content">
-            <a href="#" class="logo">Maria Luisa</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#differentiator">My Differentiator</a></li>
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#conferences">Conferences</a></li>
-                <li><a href="#insights">Insights</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+ <!-- Updated Navigation HTML -->
+<nav class="primary-navigation">
+    <div class="navigation-wrapper">
+        <a href="#" class="brand-logo">Maria</a>
+        <ul class="navigation-menu">
+            <li><a href="#landing" class="nav-active">Home</a></li>
+            <li><a href="#differentiator">About My Work</a></li>
+            <li><a href="#expertise">My Expertise</a></li>
+            <li><a href="#contact">Get In Touch</a></li>
+        </ul>
+    </div>
+</nav>
 
-    <section class="hero" id="home">
-        <div class="hero-text reveal">
-            <h1 class="section-title">SCIENTIFIC COMMUNICATOR & DATA ANALYST</h1>
-            <h2>I turn your data into insights, and insights into action.</h2>
-            <a href="#contact" class="cta-button">Let's Work Together</a>
-        </div>
-        <div class="hero-image reveal">
-            <img src="image.png" alt="Professional data analyst in workspace">
-        </div>
-    </section>
-
-    <section class="differentiator-section" id="differentiator">
-        <div class="differentiator-container">
-            <div class="differentiator-header reveal">
-                <h2 class="section-title">My Differentiator</h2>
-                <p>What sets me apart in scientific communication and data analysis</p>
-            </div>
-            <div class="differentiator-grid">
-                <div class="differentiator-item reveal">
-                    <div class="differentiator-number">01</div>
-                    <h3>People-Centred Science</h3>
-                    <p>Technical excellence meets cultural relevance — solutions that respect local contexts, languages, and lived experiences for lasting impact.</p>
-                </div>
-                <div class="differentiator-item reveal">
-                    <div class="differentiator-number">02</div>
-                    <h3>360° Global Perspective</h3>
-                    <p>Over 10 years across Africa and Europe, with multilingual fluency in 6 languages, delivering truly contextualised work beyond buzzwords.</p>
-                </div>
-                <div class="differentiator-item reveal">
-                    <div class="differentiator-number">03</div>
-                    <h3>From Data to Action</h3>
-                    <p>Advanced analytics combined with compelling communication — turning complex data into tools, narratives, and campaigns that drive real change.</p>
-                </div>
-                <div class="differentiator-item reveal">
-                    <div class="differentiator-number">04</div>
-                    <h3>Interdisciplinary Integration</h3>
-                    <p>Bridging climate, agriculture, health, and energy through One Health and systems thinking for holistic, sustainable outcomes.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-<section class="intro-text-section" id="about">
-    <div class="intro-container">
-        <!-- Hero Image Background with Overlay Text -->
-        <div class="intro-hero reveal">
-            <img src="https://www.shutterstock.com/image-photo/professional-data-analyst-using-visualizations-600nw-2489342119.jpg" alt="Data analyst working on visualizations for climate and health" class="hero-bg">
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <h2 class="hero-title fade-in">Transforming Data into Action</h2>
-                <p class="hero-subtitle fade-in delay-1">Bridging complex information with clear, impactful communication across environmental, agricultural, and health sectors.</p>
-            </div>
-        </div>
-
-        <!-- Staggered Text Paragraphs with Inline Visuals -->
-        <div class="intro-body reveal">
-            <div class="intro-grid">
-                <div class="intro-text">
-                    <p class="intro-para fade-in">I work with governments, international organisations and companies to transform environmental, agricultural and health data into tools people actually use. Through advanced data analytics, I structure, analyse and visualise complex information so that what matters is clear, comparable and actionable.</p>
-                    
-                    <p class="intro-para fade-in delay-2">I design dashboards, analytical frameworks, fact sheets and reporting tools that support monitoring, compliance, investment decisions and sustainability strategies.</p>
-                </div>
+<!-- Updated Hero Section HTML -->
+<section class="landing-showcase" id="landing" style="background-color: black;">
+    <div class="showcase-content">
+        <div class="content-wrapper">
+            <p class="greeting-text">Welcome, I'm</p>
+            <h1 class="main-heading">
+                Maria Luisa de la<br>
+                Puerta Fernandez
+            </h1>
+            <div class="dynamic-role">
                 
-                <div class="intro-visual fade-in delay-1">
-                    <img src="https://pub.mdpi-res.com/information/information-14-00614/article_deploy/html/images/information-14-00614-g008.png?1700041481" alt="Integrated performance dashboard visualization">
-                </div>
+                <span class="role-dynamic" id="typingText"></span>
+                <span class="typing-cursor">|</span>
             </div>
+            <button class="explore-button">
+                Intrigued? Keep exploring
+                <span class="button-arrow">→</span>
+            </button>
+        </div>
+    </div>
+    <div class="showcase-visual">
+        <div class="image-container">
+            <div class="image-glow"></div>
+            <img src="image.png" alt="Maria Luisa de la Puerta Fernandez">
+        </div>
+    </div>
+</section>
+   
+</section>
 
-            <div class="intro-grid reverse">
-                <div class="intro-visual fade-in delay-3">
-                    <img src="https://static.vecteezy.com/system/resources/previews/028/045/044/non_2x/business-data-visualization-process-chart-diagram-with-steps-esg-icon-concept-of-business-trend-environmental-social-and-governance-in-sustainable-and-ethical-business-vector.jpg" alt="ESG and sustainability data visualization">
-                </div>
+<!-- About Me Section HTML -->
+<section class="profile-section" id="about">
+    <div class="profile-container">
+        <div class="profile-visual">
+            <div class="visual-frame">
+                <div class="frame-glow"></div>
+                <img src="lacuna.jpg" alt="Maria Luisa de la Puerta Fernandez - Scientific Communicator & Data Analyst">
+                <div class="frame-accent"></div>
+            </div>
+        </div>
+        
+        <div class="profile-narrative">
+            <div class="narrative-label">
+                <span class="label-line"></span>
+                <span class="label-text">ABOUT ME</span>
+            </div>
+            
+            <h2 class="narrative-title">
+                Scientific Communicator<br>
+                <span class="title-highlight">& Data Analyst</span>
+            </h2>
+            
+            <div class="narrative-content">
+                <p class="narrative-intro">
+                    Despite having a strong technical background, my work has never been driven by technical considerations alone. I graduated in biotechnology, later specialised in agriculture and livestock production, and I am currently completing a PhD in agriculture.
+                </p>
                 
-                <div class="intro-text">
-                    <p class="intro-para fade-in delay-4">But if data informs, great communication moves. I use evidence to shape narratives, challenge assumptions and inspire action. I design communication products and campaigns that speak to their audience, whether that is a boardroom, a policy team or a remote rural community.</p>
-                    
-                    <p class="intro-para fade-in delay-5">With over ten years of experience across Africa and Europe, I bring a global perspective and deep sectoral knowledge — a genuine 360° view that goes well beyond the buzzword.</p>
+                <p class="narrative-body">
+                    Early in my career, particularly through my work in Sub-Saharan Africa, my understanding of science, communication and project management shifted profoundly. I learned that even the most robust technical solutions — and the most accurate data — do not create change unless they are <strong>culturally relevant and grounded in context, language and lived experience.</strong>
+                </p>
+                
+                <p class="narrative-body">
+                    I listen first, learn deeply, and only then build tools, narratives and solutions that respect the people and environments they are meant to serve. Language is central to this approach: I work professionally across <strong>Spanish, English, Italian, Portuguese, French and German</strong>, with additional experience communicating in other languages in field and intercultural settings.
+                </p>
+                
+                <p class="narrative-emphasis">
+                    Whether working with communities in remote regions, speaking at international forums, or collaborating with policymakers and practitioners, I bring not only technical expertise, but a genuinely people-centred lens shaped by years of cross-cultural engagement.
+                </p>
+            </div>
+            
+            <div class="narrative-stats">
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Languages</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Continents</span>
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <!-- Impactful Quote Section -->
+<!-- Differentiator Section HTML -->
+<section class="distinction-showcase" id="differentiator">
+    <div class="distinction-wrapper">
+        <div class="distinction-intro">
+            <div class="intro-badge">
+                <span class="badge-icon">✦</span>
+                <span class="badge-label">WHAT SETS ME APART</span>
+            </div>
+            <h2 class="distinction-headline">
+                My Unique<br>
+                <span class="headline-emphasis">Differentiator</span>
+            </h2>
+            <p class="distinction-tagline">
+                Where technical excellence meets cultural intelligence — delivering impact that goes beyond the data.
+            </p>
+        </div>
+        
+        <div class="distinction-matrix">
+            <div class="matrix-card">
+                <div class="card-header">
+                    <span class="card-index">01</span>
+                    <div class="card-icon-container">
+                        <div class="card-icon">🌍</div>
+                    </div>
+                </div>
+                <h3 class="card-title">People-Centred Science</h3>
+                <p class="card-description">
+                    Technical excellence meets cultural relevance — solutions that respect local contexts, languages, and lived experiences for lasting impact.
+                </p>
+                <div class="card-glow"></div>
+            </div>
+            
+            <div class="matrix-card">
+                <div class="card-header">
+                    <span class="card-index">02</span>
+                    <div class="card-icon-container">
+                        <div class="card-icon">🗺️</div>
+                    </div>
+                </div>
+                <h3 class="card-title">360° Global Perspective</h3>
+                <p class="card-description">
+                    Over 10 years across Africa and Europe, with multilingual fluency in 6 languages, delivering truly contextualised work beyond buzzwords.
+                </p>
+                <div class="card-glow"></div>
+            </div>
+            
+            <div class="matrix-card">
+                <div class="card-header">
+                    <span class="card-index">03</span>
+                    <div class="card-icon-container">
+                        <div class="card-icon">⚡</div>
+                    </div>
+                </div>
+                <h3 class="card-title">From Data to Action</h3>
+                <p class="card-description">
+                    Advanced analytics combined with compelling communication — turning complex data into tools, narratives, and campaigns that drive real change.
+                </p>
+                <div class="card-glow"></div>
+            </div>
+            
+            <div class="matrix-card">
+                <div class="card-header">
+                    <span class="card-index">04</span>
+                    <div class="card-icon-container">
+                        <div class="card-icon">🔗</div>
+                    </div>
+                </div>
+                <h3 class="card-title">Interdisciplinary Integration</h3>
+                <p class="card-description">
+                    Bridging climate, agriculture, health, and energy through One Health and systems thinking for holistic, sustainable outcomes.
+                </p>
+                <div class="card-glow"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="distinction-backdrop"></div>
+</section>
+<section class="action-section" id="data-to-action">
+    <div class="action-backdrop"></div>
+    
+    <div class="action-wrapper">
+        <div class="action-intro reveal">
+            <h2 class="action-headline">
+                Transforming Data<br>
+                <span class="headline-emphasis">into Action</span>
+            </h2>
+            <p class="action-tagline">
+                Bridging complex information with clear, impactful communication across environmental, agricultural, and health sectors.
+            </p>
+        </div>
+
+        <div class="action-grid reveal">
+            <div class="action-text-content">
+                <p class="action-paragraph">I work with governments, international organisations and companies to transform environmental, agricultural and health data into tools people actually use. Through advanced data analytics, I structure, analyse and visualise complex information so that what matters is clear, comparable and actionable.</p>
+                <p class="action-paragraph">I design dashboards, analytical frameworks, fact sheets and reporting tools that support monitoring, compliance, investment decisions and sustainability strategies.</p>
+            </div>
+            <div class="action-visual-card">
+                <img src="https://pub.mdpi-res.com/information/information-14-00614/article_deploy/html/images/information-14-00614-g008.png?1700041481" alt="Integrated performance dashboard visualization">
+                <div class="card-glow"></div>
+            </div>
+        </div>
+
+        <div class="communication-statement reveal">
+            <h3 class="statement-title">If data informs, great communication <span class="headline-emphasis">moves</span>.</h3>
+            <div class="play-button-container">
+                <button class="play-button">
+                    <span class="play-icon">▶</span>
+                    Watch Video
+                </button>
+            </div>
+        </div>
+
+        <div class="action-grid reverse reveal">
+            <div class="action-text-content">
+                <p class="action-paragraph">I use evidence to shape narratives, challenge assumptions and inspire action. I design communication products and campaigns that speak to their audience, whether that is a boardroom, a policy team or a remote rural community.</p>
+                <p class="action-paragraph">With over ten years of experience across Africa and Europe, I bring a global perspective and deep sectoral knowledge — a genuine 360° view that goes well beyond the buzzword.</p>
+            </div>
+            <div class="action-visual-card">
+                <img src="https://static.vecteezy.com/system/resources/previews/028/045/044/non_2x/business-data-visualization-process-chart-diagram-with-steps-esg-icon-concept-of-business-trend-environmental-social-and-governance-in-sustainable-and-ethical-business-vector.jpg" alt="ESG and sustainability data visualization">
+                <div class="card-glow"></div>
+            </div>
+        </div>
+
         <div class="intro-quote-section reveal">
-            <div class="quote-bg" style="background-color: #000;">
-                <!-- <img src="" alt="Inspirational quote: Be the change" > -->
-            </div>
-            <div class="quote-overlay"></div>
-            <blockquote class="main-quote fade-in">
+            <blockquote class="main-quote">
                 Data does not change the world.<br>
                 <strong>People do.</strong>
             </blockquote>
         </div>
     </div>
 </section>
-
-   <section class="expertise-section" id="expertise">
-    <div class="expertise-container">
-        <div class="section-header reveal">
-            <h2 class="section-title">Areas of Expertise</h2>
-            <p>Deep sectoral knowledge across critical global challenges</p>
-        </div>
+ <section class="sector-expertise" id="expertise-focus">
+    <div class="sector-wrapper">
         
-        <div class="expertise-grid">
-            <div class="expertise-item reveal">
-                <div class="expertise-icon">
-                    <img src="https://www.shutterstock.com/image-vector/climate-resilience-icon-flat-vector-260nw-2642136451.jpg" alt="Climate Adaptation & Resilience Icon">
+        <div class="sector-header reveal">
+            <div class="sector-badge">
+                <span class="sector-badge-dot"></span>
+                <span class="sector-badge-text">Core Competencies</span>
+            </div>
+            <h2 class="sector-title">Areas of <span class="headline-emphasis">Expertise</span></h2>
+            <p class="sector-subtitle">Deep sectoral knowledge across critical global challenges, bridging the gap between high-level data and ground-level implementation.</p>
+        </div>
+
+        <div class="sector-grid">
+            <div class="sector-card reveal">
+                <div class="sector-card-top">
+                    <span class="sector-number">01</span>
+                    <div class="sector-icon-box">🌡️</div>
                 </div>
-                <h3>Climate Adaptation & Resilience</h3>
-                <ul>
+                <h3 class="sector-name">Climate Adaptation & Resilience</h3>
+                <ul class="sector-list">
                     <li>Climate adaptation strategies and national campaigns</li>
                     <li>Climate risk, resilience communication and policy support</li>
-                    <li>Early Warning Systems (EWS) and community-based monitoring</li>
+                    <li>Early Warning Systems (EWS) and monitoring</li>
                 </ul>
+                <div class="sector-glow"></div>
             </div>
 
-            <div class="expertise-item reveal">
-                <div class="expertise-icon">
-                    <img src="https://www.shutterstock.com/image-vector/eco-agriculture-icons-set-growth-600nw-2644327055.jpg" alt="Climate-Smart Agriculture Icon">
+            <div class="sector-card reveal">
+                <div class="sector-card-top">
+                    <span class="sector-number">02</span>
+                    <div class="sector-icon-box">🌱</div>
                 </div>
-                <h3>Climate-Smart Agriculture & Food Security</h3>
-                <ul>
+                <h3 class="sector-name">Climate-Smart Agriculture</h3>
+                <ul class="sector-list">
                     <li>Climate-smart and resilient agricultural systems</li>
-                    <li>Food security, post-harvest practices and food preservation</li>
-                    <li>Capacity building, manuals and community training</li>
+                    <li>Food security, post-harvest and preservation</li>
+                    <li>Capacity building and community training manuals</li>
                 </ul>
+                <div class="sector-glow"></div>
             </div>
 
-            <div class="expertise-item reveal">
-                <div class="expertise-icon">
-                    <img src="https://www.shutterstock.com/image-vector/renewable-energy-line-icon-set-600nw-2602695351.jpg" alt="Renewable Energy Icon">
+            <div class="sector-card reveal">
+                <div class="sector-card-top">
+                    <span class="sector-number">03</span>
+                    <div class="sector-icon-box">🔌</div>
                 </div>
-                <h3>Renewable Energy & Bio-based Systems</h3>
-                <ul>
+                <h3 class="sector-name">Renewable Energy Systems</h3>
+                <ul class="sector-list">
                     <li>Renewable energy uptake and market positioning</li>
-                    <li>Community engagement around renewable resources</li>
-                    <li>Bioenergy systems and resource-use trade-offs (fuel vs feed)</li>
+                    <li>Community engagement around local resources</li>
+                    <li>Bioenergy systems and resource-use trade-offs</li>
                 </ul>
+                <div class="sector-glow"></div>
             </div>
 
-            <div class="expertise-item reveal">
-                <div class="expertise-icon">
-                    <img src="https://thumbs.dreamstime.com/b/poster-earth-have-one-28839026.jpg" alt="One Health Icon">
+            <div class="sector-card reveal">
+                <div class="sector-card-top">
+                    <span class="sector-number">04</span>
+                    <div class="sector-icon-box">🩺</div>
                 </div>
-                <h3>One Health & Integrated Systems</h3>
-                <ul>
-                    <li>One Health approaches across human, animal and environmental health</li>
-                    <li>Scientific workshops and applied training</li>
-                    <li>Disease surveillance and integrated field data collection</li>
+                <h3 class="sector-name">One Health Integration</h3>
+                <ul class="sector-list">
+                    <li>Human, animal and environmental health nexus</li>
+                    <li>Scientific workshops and applied field training</li>
+                    <li>Disease surveillance and integrated data collection</li>
                 </ul>
+                <div class="sector-glow"></div>
+            </div>
+        </div>
+    </div>
+    <div class="sector-bg-glow"></div>
+</section>
+
+ <section class="impact-section" id="featured-work">
+    <div class="impact-wrapper">
+        
+        <div class="impact-header reveal">
+            <div class="impact-badge">
+                <span class="impact-dot"></span>
+                <span class="impact-label">PORTFOLIO</span>
+            </div>
+            <h2 class="impact-headline">Featured <span class="headline-emphasis">Projects</span></h2>
+            <p class="impact-subheadline">Evidence-based impact across sectors and continents, optimized for clarity and scale.</p>
+        </div>
+
+        <div class="impact-grid">
+            <div class="impact-card reveal">
+                <div class="impact-image-box">
+                    <img src="https://www.adaptation-undp.org/sites/default/files/project/niger_1_of_1-6.jpg" alt="Community climate resilience project">
+                    <div class="impact-overlay">
+                        <span class="impact-num">01</span>
+                    </div>
+                </div>
+                <div class="impact-content">
+                    <h3 class="impact-title">Community-Based Early Warning Systems</h3>
+                    <p class="impact-desc">Integrating climate data with indigenous knowledge to support local resilience decision-making.</p>
+                </div>
+            </div>
+
+            <div class="impact-card reveal">
+                <div class="impact-image-box">
+                    <img src="https://smartwatermagazine.com/sites/default/files/styles/thumbnail-830x455/public/zambia-water-award.jpg?itok=xt-kDhfB" alt="Rangeland monitoring in Africa">
+                    <div class="impact-overlay">
+                        <span class="impact-num">02</span>
+                    </div>
+                </div>
+                <div class="impact-content">
+                    <h3 class="impact-title">Lacuna Rangeland Monitoring</h3>
+                    <p class="impact-desc">Ground-truthed environmental data collection for near real-time satellite calibration.</p>
+                </div>
+            </div>
+
+            <div class="impact-card reveal">
+                <div class="impact-image-box">
+                    <img src="https://www.adaptationcommunity.net/wp-content/uploads/2022/10/COP-27resilience-hub-1536x864-1-1024x576.jpg" alt="Climate policy forum">
+                    <div class="impact-overlay">
+                        <span class="impact-num">03</span>
+                    </div>
+                </div>
+                <div class="impact-content">
+                    <h3 class="impact-title">Climate Policy Communications</h3>
+                    <p class="impact-desc">Evidence-based campaigns supporting policy uptake and global stakeholder engagement.</p>
+                </div>
+            </div>
+
+            <div class="impact-card reveal">
+                <div class="impact-image-box">
+                    <img src="https://s7d1.scene7.com/is/image/wbcollab/E2E-800x534?qlt=90&fmt=webp" alt="Women in renewable energy Africa">
+                    <div class="impact-overlay">
+                        <span class="impact-num">04</span>
+                    </div>
+                </div>
+                <div class="impact-content">
+                    <h3 class="impact-title">Renewable Energy Engagement</h3>
+                    <p class="impact-desc">Market strategies for clean energy adoption grounded in local user needs.</p>
+                </div>
+            </div>
+
+            <div class="impact-card reveal">
+                <div class="impact-image-box">
+                    <img src="https://www.3blmedia.com/sites/default/files/styles/carousel_2x/public/images/1R5A4260.jpg" alt="Climate-smart agriculture community">
+                    <div class="impact-overlay">
+                        <span class="impact-num">05</span>
+                    </div>
+                </div>
+                <div class="impact-content">
+                    <h3 class="impact-title">Food Systems (RUFORUM)</h3>
+                    <p class="impact-desc">Multi-format digital campaigns focused on resilient capacity building.</p>
+                </div>
+            </div>
+
+            <div class="impact-card reveal">
+                <div class="impact-image-box">
+                    <img src="https://www.woah.org/app/uploads/cache/2023/05/one-health-capacity-building-woah-1/1818398200.jpg" alt="One Health workshop">
+                    <div class="impact-overlay">
+                        <span class="impact-num">06</span>
+                    </div>
+                </div>
+                <div class="impact-content">
+                    <h3 class="impact-title">Avian Influenza Surveillance</h3>
+                    <p class="impact-desc">Field data collection across the animal–human–environment interface.</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
-
-    <section class="projects-section" id="projects">
-        <div class="projects-container">
-            <div class="section-header reveal">
-                <h2 class="section-title">Featured Projects</h2>
-                <p>Real-world impact across sectors and continents</p>
-            </div>
-
-            <div class="projects-list">
-                <div class="project-item reveal">
-                    <div class="project-number">01</div>
-                    <div class="project-title">Community-Based Early Warning Systems (EWS)</div>
-                    <div class="project-description">Design and communication of Early Warning Systems integrating climate data with community-based and indigenous knowledge to support resilience and local decision-making.</div>
-                    <div class="project-image"><img src="https://www.adaptation-undp.org/sites/default/files/project/niger_1_of_1-6.jpg" alt="Community climate resilience project"></div>
-                </div>
-
-                <div class="project-item reveal">
-                    <div class="project-number">02</div>
-                    <div class="project-title">Lacuna Rangeland Monitoring & Field Data Collection</div>
-                    <div class="project-description">Ground-truthed environmental data collection supporting the calibration and validation of satellite-derived rangeland indicators for near real-time monitoring.</div>
-                    <div class="project-image"><img src="https://smartwatermagazine.com/sites/default/files/styles/thumbnail-830x455/public/zambia-water-award.jpg?itok=xt-kDhfB" alt="Rangeland monitoring in Africa"></div>
-                </div>
-
-                <div class="project-item reveal">
-                    <div class="project-number">03</div>
-                    <div class="project-title">Climate Adaptation Communications & Policy Support</div>
-                    <div class="project-description">Development of evidence-based climate adaptation campaigns and communication tools supporting policy uptake and stakeholder engagement.</div>
-                    <div class="project-image"><img src="https://www.adaptationcommunity.net/wp-content/uploads/2022/10/COP-27resilience-hub-1536x864-1-1024x576.jpg" alt="Climate policy forum"></div>
-                </div>
-
-                <div class="project-item reveal">
-                    <div class="project-number">04</div>
-                    <div class="project-title">Renewable Energy Uptake & Community Engagement</div>
-                    <div class="project-description">Market and community engagement strategies to support renewable energy adoption, grounded in local contexts and user needs.</div>
-                    <div class="project-image"><img src="https://s7d1.scene7.com/is/image/wbcollab/E2E-800x534?qlt=90&fmt=webp" alt="Women in renewable energy Africa"></div>
-                </div>
-
-                <div class="project-item reveal">
-                    <div class="project-number">05</div>
-                    <div class="project-title">Food Security & Resilient Food Systems (RUFORUM Campaign)</div>
-                    <div class="project-description">Design and delivery of a multi-format food security campaign, including video and digital content, focused on resilient food systems and capacity building.</div>
-                    <div class="project-image"><img src="https://www.3blmedia.com/sites/default/files/styles/carousel_2x/public/images/1R5A4260.jpg" alt="Climate-smart agriculture community"></div>
-                </div>
-
-                <div class="project-item reveal">
-                    <div class="project-number">06</div>
-                    <div class="project-title">Avian Influenza Surveillance & Data Collection</div>
-                    <div class="project-description">Applied work on avian influenza surveillance, including field data collection and coordination across animal–human–environment interfaces.</div>
-                    <div class="project-image"><img src="https://www.woah.org/app/uploads/cache/2023/05/one-health-capacity-building-woah-1/1818398200.jpg" alt="One Health workshop"></div>
-                </div>
-            </div>
-        </div>
-    </section>
 
    <section class="conferences-section" id="conferences">
     <div class="conferences-container">
@@ -1504,60 +3138,73 @@
     </div>
 </section>
 
- <section class="about-journey-section" id="about">
-    <div class="about-journey-container reveal">
-        <h2 class="section-title">A People-Centred Approach</h2>
+<section class="human-approach" id="philosophy">
+    <div class="human-container">
         
-        <div class="journey-block">
-            <div class="journey-text">
-                <p class="journey-para fade-in">Despite having a strong technical background, my work has never been driven by technical considerations alone. I graduated in biotechnology, later specialised in agriculture and livestock production, and I am currently completing a PhD in agriculture. Along the way, I also undertook a postdoctoral research fellowship in Japan focused on the application of data science in agricultural systems.</p>
+        <div class="human-header reveal">
+            <div class="human-line"></div>
+            <h2 class="human-title">A People-Centred <span class="headline-emphasis">Approach</span></h2>
+        </div>
+
+        <div class="human-panel reveal">
+            <div class="human-image-side">
+                <img src="https://www.umass.edu/natural-sciences/sites/g/files/ijdqth206/files/2023-03/PhD%20Animal%20Biotech-1.jpg" alt="Research and Academic Foundation">
+                <div class="human-number">01</div>
             </div>
-            <div class="journey-image fade-in delay-1">
-                <img src="https://www.umass.edu/natural-sciences/sites/g/files/ijdqth206/files/2023-03/PhD%20Animal%20Biotech-1.jpg" alt="Biotechnology and agricultural research lab">
-            </div>
-            <div class="journey-image fade-in delay-2">
-                <img src="https://www.umass.edu/natural-sciences/sites/g/files/ijdqth206/files/2023-03/PhD%20Animal%20Biotech-1.jpg" alt="Postdoctoral research in Japan agriculture lab">
+            <div class="human-text-side">
+                <p class="human-lead">Despite having a strong technical background, my work has never been driven by technical considerations alone.</p>
+                <p>I graduated in biotechnology, specialized in agriculture and livestock production, and am currently completing a PhD. Along the way, I undertook a postdoctoral research fellowship in Japan focused on the application of data science in agricultural systems.</p>
+                <p>Early in my career, particularly through my work in Sub-Saharan Africa, my understanding shifted profoundly. I learned that even the most robust technical solutions do not create change unless they are culturally relevant and grounded in context and lived experience.</p>
             </div>
         </div>
-        
-        <div class="journey-block reverse">
-            <div class="journey-text">
-                <p class="journey-para fade-in delay-3">Early in my career, particularly through my work in Sub-Saharan Africa, my understanding of science, communication and project management shifted profoundly. I learned that even the most robust technical solutions — and the most accurate data — do not create change unless they are culturally relevant and grounded in context, language and lived experience.</p>
+
+        <div class="human-panel reverse reveal">
+            <div class="human-image-side">
+                <img src="https://www.umass.edu/natural-sciences/sites/g/files/ijdqth206/files/2023-03/PhD%20Animal%20Biotech-1.jpg" alt="Cultural and Linguistic Engagement">
+                <div class="human-number">02</div>
             </div>
-            <div class="journey-image fade-in delay-4">
-                <img src="https://www.umass.edu/natural-sciences/sites/g/files/ijdqth206/files/2023-03/PhD%20Animal%20Biotech-1.jpg" alt="Field work with rural communities in Africa">
-            </div>
-        </div>
-        
-        <div class="journey-block">
-            <div class="journey-text">
-                <p class="journey-para fade-in delay-5">This realisation shapes how I work. I listen first, learn deeply, and only then build tools, narratives and solutions that respect the people and environments they are meant to serve. It might sound simple, but learning to listen without prejudice has been one of the hardest and most valuable lessons of my career.</p>
-                
-                <p class="journey-para fade-in delay-6">Language is central to this approach: having trained, worked and studied across multiple countries and languages, I work professionally across Spanish, English, Italian, Portuguese, French and German, with additional experience communicating in other languages in field and intercultural settings. Being a polyglot is not simply a technical asset, but a way of building trust, understanding nuance, and producing culturally grounded, relevant work.</p>
-            </div>
-            <div class="journey-image fade-in delay-7">
-                <img src="https://www.umass.edu/natural-sciences/sites/g/files/ijdqth206/files/2023-03/PhD%20Animal%20Biotech-1.jpg" alt="Speaking at international polyglot conference">
+            <div class="human-text-side">
+                <p class="human-lead">I listen first, learn deeply, and only then build tools that respect the people they serve.</p>
+                <p>This realization shapes how I work. Learning to listen without prejudice has been one of the hardest and most valuable lessons of my career. Language is central to this: working professionally across Spanish, English, Italian, Portuguese, French, and German.</p>
+                <p>Being a polyglot is not simply a technical asset, but a way of building trust, understanding nuance, and producing culturally grounded, relevant work.</p>
             </div>
         </div>
-        
-        <div class="journey-block reverse">
-            <div class="journey-text">
-                <p class="journey-para fade-in delay-8">Whether working with communities in remote regions, speaking at international forums, or collaborating with policymakers and practitioners, I bring not only technical expertise, but a genuinely people-centred lens shaped by years of cross-cultural engagement and linguistic fluency.</p>
+
+        <div class="human-panel reveal">
+            <div class="human-image-side">
+                <img src="https://www.umass.edu/natural-sciences/sites/g/files/ijdqth206/files/2023-03/PhD%20Animal%20Biotech-1.jpg" alt="Global Impact and Policymaking">
+                <div class="human-number">03</div>
             </div>
-            <div class="journey-image fade-in delay-9">
-                <img src="https://www.umass.edu/natural-sciences/sites/g/files/ijdqth206/files/2023-03/PhD%20Animal%20Biotech-1.jpg" alt="Hands-on agricultural field research">
+            <div class="human-text-side">
+                <p class="human-lead">A lens shaped by years of cross-cultural engagement and linguistic fluency.</p>
+                <p>Whether working with communities in remote regions, speaking at international forums, or collaborating with policymakers and practitioners, I bring not only technical expertise, but a genuinely people-centred lens.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section class="connect-section" id="contact">
+    <div class="connect-wrapper reveal">
+        <div class="connect-content">
+            <div class="connect-text-side">
+                <div class="connect-badge">Contact</div>
+                <h2 class="connect-title">Let’s Work <span class="headline-emphasis">Together</span></h2>
+                <p class="connect-message">
+                    If you are interested in working together, exploring a project, or simply exchanging ideas, I would be glad to connect — many collaborations begin with a simple conversation over a cup of coffee.
+                </p>
+                <div class="connect-actions">
+                    <a href="#" class="connect-button">Book a Call</a>
+                    <a href="mailto:your-email@example.com" class="connect-link">Send an Email →</a>
+                </div>
+            </div>
+            
+            <div class="connect-image-side">
+                <img src="./coffee1.jpg" alt="A warm cup of coffee symbolizing a personal conversation" class="coffee-img">
+                <div class="image-overlay-glow"></div>
             </div>
         </div>
     </div>
 </section>
-
-    <section class="contact-section" id="contact">
-        <div class="contact-container reveal">
-            <h2 class="section-title">Let's Work Together</h2>
-            <p>If you are interested in working together, exploring a project, or simply exchanging ideas, I would be glad to connect — many collaborations begin with a simple conversation over a cup of coffee.</p>
-            <a href="#" class="cta-button-white">Book a Call</a>
-        </div>
-    </section>
 
     <footer>
         <div class="footer-content">
@@ -1614,5 +3261,53 @@
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
     </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const roles = ['GRANT WRITER', 'RESEARCHER', 'PORJECT MANAGER', 'BUSINESS WOMAN', 'EDUCATOR', 'POLYGLOT'];
+    const typingElement = document.getElementById('typingText');
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 150;
+
+    function typeRole() {
+        const currentRole = roles[roleIndex];
+        
+        if (isDeleting) {
+            typingElement.textContent = currentRole.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 100;
+        } else {
+            typingElement.textContent = currentRole.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 150;
+        }
+
+        if (!isDeleting && charIndex === currentRole.length) {
+            typingSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            typingSpeed = 500;
+        }
+
+        setTimeout(typeRole, typingSpeed);
+    }
+
+    typeRole();
+
+    // Navbar scroll effect
+    const navbar = document.querySelector('.primary-navigation');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+});
+</script>
 </body>
 </html>
