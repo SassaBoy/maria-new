@@ -52,30 +52,27 @@
             border-bottom: 1px solid #e5e5e5;
             transition: padding 0.3s ease, background 0.3s ease;
         }
+/* The background change */
+nav.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
 
-        nav.scrolled {
-            padding: 1.2rem 8%;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            background: rgba(255,255,255,0.95);
-        }
+/* The Logo change */
+nav.scrolled .logo, 
+nav.scrolled .brand-logo {
+    color: #000 !important;
+}
 
-        .nav-content {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* The Links change */
+nav.scrolled .navigation-menu li a {
+    color: #000 !important;
+}
 
-        .logo {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #000;
-            text-decoration: none;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
+/* The Active Link (raspberry color) */
+nav.scrolled .navigation-menu li a.nav-active {
+    color: #ff3377 !important;
+}
         .nav-links {
             display: flex;
             gap: 3rem;
@@ -849,7 +846,7 @@
 }
 
 .headline-emphasis {
-    background: linear-gradient(135deg, #ff0054 0%, #ff3377 100%);
+    background: linear-gradient(135deg, #ff3377 0%, #ff3377 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -939,7 +936,7 @@
 
 .play-button {
     background: transparent;
-    border: 2px solid #ff0054;
+    border: 2px solid #ff3377;
     color: #fff;
     padding: 1rem 2.5rem;
     border-radius: 50px;
@@ -953,7 +950,7 @@
 }
 
 .play-button:hover {
-    background: #ff0054;
+    background: #ff3377;
     box-shadow: 0 0 25px rgba(255, 0, 84, 0.4);
 }
 
@@ -970,7 +967,7 @@
 }
 
 .main-quote strong {
-    color: #ff0054;
+    color: #ff3377;
     font-weight: 800;
     display: block;
     margin-top: 10px;
@@ -1083,7 +1080,7 @@
 }
 
 .navigation-menu li a.nav-active {
-    color: #ff0054;
+    color: #ff3377;
 }
 
 .navigation-menu li a.nav-active::after {
@@ -1097,12 +1094,12 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: #ff0054;
+    background: #ff3377;
     transition: width 0.3s ease;
 }
 
 .navigation-menu li a:hover {
-    color: #ff0054;
+    color: #ff3377;
 }
 
 .navigation-menu li a:hover::after {
@@ -1211,13 +1208,13 @@
 }
 
 .role-dynamic {
-    color: #ff0054;
+    color: #ff3377;
     min-width: 220px;
     text-shadow: 0 0 20px rgba(255, 0, 84, 0.4);
 }
 
 .typing-cursor {
-    color: #ff0054;
+    color: #ff3377;
     animation: blink 1s step-end infinite;
     font-weight: 300;
     font-size: 2.5rem;
@@ -1262,7 +1259,7 @@
 }
 
 .explore-button:hover {
-    border-color: #ff0054;
+    border-color: #ff3377;
     background: rgba(255, 0, 84, 0.05);
     box-shadow: 0 0 40px rgba(255, 0, 84, 0.2), inset 0 0 20px rgba(255, 0, 84, 0.1);
     transform: translateY(-3px);
@@ -1350,7 +1347,7 @@
     transform: translateY(-50%);
     width: 4px;
     height: 120px;
-    background: linear-gradient(to bottom, transparent, #ff0054, transparent);
+    background: linear-gradient(to bottom, transparent, #ff3377, transparent);
     animation: lineGlow 3s ease-in-out infinite;
 }
 
@@ -1537,13 +1534,13 @@
 .label-line {
     width: 60px;
     height: 2px;
-    background: linear-gradient(to right, #ff0054, transparent);
+    background: linear-gradient(to right, #ff3377, transparent);
 }
 
 .label-text {
     font-size: 0.9rem;
     letter-spacing: 3px;
-    color: #ff0054;
+    color: #ff3377;
     font-weight: 600;
 }
 
@@ -1589,17 +1586,19 @@
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.85);
     padding-left: 1.5rem;
-    border-left: 3px solid #ff0054;
+    border-left: 3px solid #ff3377;
     margin-top: 2rem;
     font-style: italic;
 }
-
 /* Stats Section */
 .narrative-stats {
     display: flex;
+    justify-content: center; /* Centers the group horizontally */
     align-items: center;
     gap: 3rem;
     padding: 2.5rem 0;
+    margin: 0 auto;         /* Ensures the container itself is centered */
+    max-width: 900px;       /* Keeps the bar from stretching too wide */
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -1607,21 +1606,24 @@
 .stat-item {
     display: flex;
     flex-direction: column;
+    align-items: center;    /* Centers text inside each item */
+    text-align: center;
     gap: 0.5rem;
+    min-width: 120px;       /* Prevents layout shift */
 }
 
 .stat-number {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #ff0054;
+    color: #ff3377;
     line-height: 1;
     text-shadow: 0 0 20px rgba(255, 0, 84, 0.3);
 }
 
 .stat-label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;     /* Slightly smaller for better hierarchy */
     color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;  /* Increased for a premium feel */
     text-transform: uppercase;
 }
 
@@ -1632,19 +1634,14 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1100px) {
-    .profile-container {
-        grid-template-columns: 1fr;
-        gap: 4rem;
+@media (max-width: 768px) {
+    .narrative-stats {
+        flex-direction: column; /* Stack vertically on mobile */
+        gap: 2rem;
     }
     
-    .visual-frame {
-        max-width: 500px;
-        margin: 0 auto;
-    }
-    
-    .narrative-title {
-        font-size: 3rem;
+    .stat-divider {
+        display: none; /* Hide vertical lines on mobile stack */
     }
 }
 
@@ -1704,7 +1701,6 @@
         bottom: 15px;
     }
 }
-
 /* Differentiator Section */
 .distinction-showcase {
     background: #000;
@@ -1755,37 +1751,26 @@
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;
-    padding: 0.8rem 2rem;
-    background: rgba(255, 0, 84, 0.1);
-    border: 1px solid rgba(255, 0, 84, 0.3);
+    padding: 0.6rem 1.5rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px;
     margin-bottom: 2rem;
     transition: all 0.3s ease;
 }
 
 .intro-badge:hover {
-    background: rgba(255, 0, 84, 0.15);
+    background: rgba(255, 0, 84, 0.1);
     border-color: rgba(255, 0, 84, 0.5);
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(255, 0, 84, 0.2);
-}
-
-.badge-icon {
-    font-size: 1.2rem;
-    color: #ff0054;
-    animation: rotate 20s linear infinite;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
 }
 
 .badge-label {
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.6);
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 .distinction-headline {
@@ -1797,7 +1782,7 @@
 }
 
 .headline-emphasis {
-    background: linear-gradient(135deg, #ff0054 0%, #ff3377 100%);
+    background: linear-gradient(135deg, #ff3377 0%, #ff3377 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1851,7 +1836,7 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #ff0054, transparent);
+    background: linear-gradient(90deg, #ff3377, transparent);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.5s ease;
@@ -1901,31 +1886,39 @@
 }
 
 .matrix-card:hover .card-index {
-    color: #ff0054;
-    text-shadow: 0 0 30px rgba(255, 0, 84, 0.5);
+    color: #ff3377;
 }
 
+/* Updated Corporate Icon Container */
 .card-icon-container {
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 0, 84, 0.1);
-    border: 2px solid rgba(255, 0, 84, 0.2);
-    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    background: transparent;
+    border: 1.5px solid rgba(255, 0, 84, 0.4);
+    border-radius: 12px; /* Modern squircle look */
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+}
+
+.corporate-icon {
+    width: 26px;
+    height: 26px;
+    color: #ff3377;
+    stroke-width: 1.5;
+    transition: all 0.4s ease;
 }
 
 .matrix-card:hover .card-icon-container {
-    background: rgba(255, 0, 84, 0.2);
-    border-color: #ff0054;
-    transform: rotate(360deg) scale(1.1);
-    box-shadow: 0 0 30px rgba(255, 0, 84, 0.4);
+    background: #ff3377;
+    border-color: #ff3377;
+    transform: scale(1.05);
 }
 
-.card-icon {
-    font-size: 1.8rem;
+.matrix-card:hover .corporate-icon {
+    color: #fff;
+    transform: scale(1.1);
 }
 
 .card-title {
@@ -1934,11 +1927,6 @@
     color: #fff;
     margin-bottom: 1.2rem;
     line-height: 1.3;
-    transition: color 0.3s ease;
-}
-
-.matrix-card:hover .card-title {
-    color: #fff;
 }
 
 .card-description {
@@ -1949,84 +1937,18 @@
 }
 
 .matrix-card:hover .card-description {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* Responsive Design */
 @media (max-width: 968px) {
-    .distinction-showcase {
-        padding: 8rem 5% 6rem;
-    }
-    
-    .distinction-headline {
-        font-size: 3.5rem;
-    }
-    
-    .distinction-matrix {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .matrix-card {
-        padding: 2.5rem;
-    }
+    .distinction-headline { font-size: 3.5rem; }
+    .distinction-matrix { grid-template-columns: 1fr; gap: 2rem; }
 }
 
 @media (max-width: 640px) {
-    .distinction-showcase {
-        padding: 6rem 5% 4rem;
-    }
-    
-    .distinction-intro {
-        margin-bottom: 4rem;
-    }
-    
-    .distinction-headline {
-        font-size: 2.5rem;
-    }
-    
-    .distinction-tagline {
-        font-size: 1rem;
-    }
-    
-    .matrix-card {
-        padding: 2rem;
-    }
-    
-    .card-index {
-        font-size: 2.5rem;
-    }
-    
-    .card-icon-container {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .card-icon {
-        font-size: 1.5rem;
-    }
-    
-    .card-title {
-        font-size: 1.5rem;
-    }
-    
-    .card-description {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .intro-badge {
-        padding: 0.7rem 1.5rem;
-    }
-    
-    .badge-label {
-        font-size: 0.75rem;
-    }
-    
-    .distinction-headline {
-        font-size: 2rem;
-    }
+    .distinction-headline { font-size: 2.5rem; }
+    .card-title { font-size: 1.5rem; }
 }
 
 /* --- SECTOR EXPERTISE CSS --- */
@@ -2064,9 +1986,9 @@
 .sector-badge-dot {
     width: 8px;
     height: 8px;
-    background: #ff0054;
+    background: #ff3377;
     border-radius: 50%;
-    box-shadow: 0 0 10px #ff0054;
+    box-shadow: 0 0 10px #ff3377;
 }
 
 .sector-badge-text {
@@ -2081,76 +2003,77 @@
     margin-bottom: 1.5rem;
 }
 
-.sector-subtitle {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.6);
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
-
-/* --- THE GRID --- */
+/* --- THE GRID (Forced 3 Columns) --- */
 .sector-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(3, 1fr); /* Ensures one row on desktop */
+    gap: 2rem;
 }
 
 /* --- THE CARDS --- */
 .sector-card {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 3.5rem 2.5rem;
-    border-radius: 20px;
+    padding: 3rem 2rem;
+    border-radius: 16px;
     position: relative;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    overflow: hidden;
     display: flex;
     flex-direction: column;
+    min-height: 420px; /* Keeps cards uniform height */
 }
 
 .sector-card:hover {
     background: rgba(255, 255, 255, 0.04);
     border-color: rgba(255, 0, 84, 0.5);
-    transform: translateY(-15px);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    transform: translateY(-10px);
 }
 
 .sector-card-top {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 .sector-number {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
-    color: #ff0054;
-    font-family: monospace;
+    color: rgba(255, 0, 84, 0.5);
+    font-family: 'Inter', sans-serif;
 }
 
+/* Corporate Icon Box */
 .sector-icon-box {
-    font-size: 3rem; /* Large prominent icon as requested */
-    background: rgba(255, 0, 84, 0.1);
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 0, 84, 0.2);
-    transition: all 0.5s ease;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+}
+
+.expertise-svg {
+    width: 30px;
+    height: 30px;
+    color: #ff3377;
+    stroke-width: 1.5;
 }
 
 .sector-card:hover .sector-icon-box {
-    transform: rotateY(180deg) scale(1.1);
-    background: rgba(255, 0, 84, 0.2);
-    box-shadow: 0 0 20px rgba(255, 0, 84, 0.3);
+    background: #ff3377;
+    border-color: #ff3377;
+}
+
+.sector-card:hover .expertise-svg {
+    color: #fff;
 }
 
 .sector-name {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     line-height: 1.3;
@@ -2163,57 +2086,34 @@
 }
 
 .sector-list li {
-    font-size: 1.05rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
     position: relative;
-    padding-left: 20px;
+    padding-left: 18px;
 }
 
 .sector-list li::before {
-    content: '→';
+    content: '';
     position: absolute;
     left: 0;
-    color: #ff0054;
-}
-
-/* Card Glow Effect */
-.sector-glow {
-    position: absolute;
-    bottom: -50px;
-    right: -50px;
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle, rgba(255, 0, 84, 0.15) 0%, transparent 70%);
-    filter: blur(40px);
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    background: #ff3377;
     border-radius: 50%;
-    opacity: 0;
-    transition: opacity 0.5s ease;
 }
 
-.sector-card:hover .sector-glow {
-    opacity: 1;
-}
-
-/* Global Section Background Glow */
-.sector-bg-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100vw;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(255, 0, 84, 0.03) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 1;
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .sector-grid { grid-template-columns: repeat(2, 1fr); } /* 2 on tablets */
 }
 
 @media (max-width: 768px) {
-    .sector-expertise { padding: 6rem 5%; }
-    .sector-grid { grid-template-columns: 1fr; }
+    .sector-grid { grid-template-columns: 1fr; } /* 1 on mobile */
+    .sector-card { min-height: auto; }
 }
-
 /* --- IMPACT PROJECTS CSS --- */
 .impact-section {
     background: #000;
@@ -2243,7 +2143,7 @@
 
 .impact-dot {
     width: 6px; height: 6px;
-    background: #ff0054;
+    background: #ff3377;
     border-radius: 50%;
 }
 
@@ -2281,7 +2181,7 @@
 }
 
 .impact-card:hover {
-    border-color: #ff0054;
+    border-color: #ff3377;
     transform: translateY(-5px);
     background: rgba(255, 255, 255, 0.04);
 }
@@ -2315,13 +2215,13 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 1px solid #ff0054;
+    border: 1px solid #ff3377;
 }
 
 .impact-num {
     font-size: 0.8rem;
     font-weight: 700;
-    color: #ff0054;
+    color: #ff3377;
 }
 
 .impact-content {
@@ -2375,7 +2275,7 @@
 .human-line {
     height: 1px;
     width: 60px;
-    background: #ff0054;
+    background: #ff3377;
 }
 
 .human-title {
@@ -2444,7 +2344,7 @@
 .human-lead {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #ff0054;
+    color: #ff3377;
     line-height: 1.4;
     margin-bottom: 2rem;
 }
@@ -2487,15 +2387,15 @@
 
 .connect-content {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    
+    /* This is the key line to center the image vertically */
+    align-items: center; 
+    
+    max-width: 1200px;
+    margin: 0 auto;
 }
-
 /* Text Side */
 .connect-text-side {
     padding: 5rem;
@@ -2504,7 +2404,7 @@
 }
 
 .connect-badge {
-    color: #ff0054;
+    color: #ff3377;
     text-transform: uppercase;
     letter-spacing: 3px;
     font-size: 0.8rem;
@@ -2545,7 +2445,7 @@
 }
 
 .connect-button:hover {
-    background: #ff0054;
+    background: #ff3377;
     color: #fff;
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(255, 0, 84, 0.3);
@@ -2559,7 +2459,7 @@
 }
 
 .connect-link:hover {
-    color: #ff0054;
+    color: #ff3377;
 }
 
 /* Image Side */
@@ -2571,19 +2471,32 @@
 
 .coffee-img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    display: block;
     object-fit: cover;
-    filter: brightness(0.8) contrast(1.1);
+    border-radius: 12px;
+    
+    /* Pushes clarity to 85% of the image; blur only happens at the very edges */
+    mask-image: radial-gradient(circle, black 85%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle, black 85%, transparent 100%);
+    
+    /* Ensures no browser-level smoothing makes it look fuzzy */
+    image-rendering: -webkit-optimize-contrast; 
+    filter: brightness(1.05); /* Slight boost to make it look crisp */
+    transition: transform 0.8s ease;
 }
 
+/* Removed the inset box-shadow to prevent the "blurry film" look */
 .image-overlay-glow {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 100%);
-    box-shadow: inset 100px 0 150px -50px #000; /* Blends image into the text box */
+    right: 0;
+    bottom: 0;
+    /* Instead of blur, we add a very subtle high-end corporate border */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    border-radius: 12px;
 }
 
 /* Responsive Layout */
@@ -2613,27 +2526,30 @@
         gap: 1.5rem;
     }
 }
+
+
     </style>
 </head>
 <body>
  <!-- Updated Navigation HTML -->
 <nav class="primary-navigation">
-    <div class="navigation-wrapper">
-        <a href="#" class="brand-logo">Maria</a>
-        <ul class="navigation-menu">
-            <li><a href="#landing" class="nav-active">Home</a></li>
-            <li><a href="#differentiator">About My Work</a></li>
-            <li><a href="#expertise">My Expertise</a></li>
-            <li><a href="#contact">Get In Touch</a></li>
-        </ul>
-    </div>
+  <div class="navigation-wrapper">
+    <a href="#" class="brand-logo">Maria</a>
+    <ul class="navigation-menu">
+        <li><a href="#landing" class="nav-active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#differentiator">Approach</a></li> <li><a href="#expertise-focus">Expertise</a></li>
+       <li><a href="#featured-work">Work</a></li>
+        <li><a href="#contact">Engagement</a></li> <li><a href="#contact">Contact</a></li>
+    </ul>
+</div>
 </nav>
 
 <!-- Updated Hero Section HTML -->
 <section class="landing-showcase" id="landing" style="background-color: black;">
     <div class="showcase-content">
-        <div class="content-wrapper">
-            <p class="greeting-text">Welcome, I'm</p>
+        <div class="content-wrapper" style="margin-top: -150px;" >
+            <p class="greeting-text" >Welcome, I'm</p>
             <h1 class="main-heading">
                 Maria Luisa de la<br>
                 Puerta Fernandez
@@ -2683,7 +2599,7 @@
             
             <div class="narrative-content">
                 <p class="narrative-intro">
-                    Despite having a strong technical background, my work has never been driven by technical considerations alone. I graduated in biotechnology, later specialised in agriculture and livestock production, and I am currently completing a PhD in agriculture.
+                    I graduated in biotechnology, later specialised in agriculture and livestock production, and I am currently completing a PhD in agriculture. Despite having a strong technical background, my work has never been driven by technical considerations alone. 
                 </p>
                 
                 <p class="narrative-body">
@@ -2700,39 +2616,39 @@
             </div>
             
             <div class="narrative-stats">
-                <div class="stat-item">
-                    <span class="stat-number">10+</span>
-                    <span class="stat-label">Years Experience</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">6</span>
-                    <span class="stat-label">Languages</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">2</span>
-                    <span class="stat-label">Continents</span>
-                </div>
-            </div>
+    <div class="stat-item">
+        <span class="stat-number">10+</span>
+        <span class="stat-label">Years Experience</span>
+    </div>
+    
+    <div class="stat-divider"></div>
+    
+    <div class="stat-item">
+        <span class="stat-number">6+</span>
+        <span class="stat-label">Languages</span>
+    </div>
+    
+    <div class="stat-divider"></div>
+    
+    <div class="stat-item">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Continents</span>
+    </div>
+</div>
         </div>
     </div>
 </section>
-
-<!-- Differentiator Section HTML -->
-<section class="distinction-showcase" id="differentiator">
+<section class="distinction-showcase" id="differentiator" style="margin-top: -120px;">
     <div class="distinction-wrapper">
         <div class="distinction-intro">
             <div class="intro-badge">
-                <span class="badge-icon">✦</span>
-                <span class="badge-label">WHAT SETS ME APART</span>
+                <span class="badge-label">DIFFERENTIATOR</span>
             </div>
             <h2 class="distinction-headline">
-                My Unique<br>
-                <span class="headline-emphasis">Differentiator</span>
+                The Value <span class="headline-emphasis">I Bring</span>
             </h2>
             <p class="distinction-tagline">
-                Where technical excellence meets cultural intelligence — delivering impact that goes beyond the data.
+                Where technical excellence meets cultural intelligence — delivering global impact that goes beyond the data.
             </p>
         </div>
         
@@ -2741,63 +2657,72 @@
                 <div class="card-header">
                     <span class="card-index">01</span>
                     <div class="card-icon-container">
-                        <div class="card-icon">🌍</div>
+                        <svg class="corporate-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
                     </div>
                 </div>
                 <h3 class="card-title">People-Centred Science</h3>
                 <p class="card-description">
-                    Technical excellence meets cultural relevance — solutions that respect local contexts, languages, and lived experiences for lasting impact.
+                    Technical excellence meets cultural relevance—solutions that respect local contexts, languages, and lived experiences for lasting impact.
                 </p>
-                <div class="card-glow"></div>
             </div>
             
             <div class="matrix-card">
                 <div class="card-header">
                     <span class="card-index">02</span>
                     <div class="card-icon-container">
-                        <div class="card-icon">🗺️</div>
+                        <svg class="corporate-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
                     </div>
                 </div>
                 <h3 class="card-title">360° Global Perspective</h3>
                 <p class="card-description">
-                    Over 10 years across Africa and Europe, with multilingual fluency in 6 languages, delivering truly contextualised work beyond buzzwords.
+                    Spanning 4 continents and 6+ languages, delivering truly contextualized work that bridges the gap between global strategy and local reality.
                 </p>
-                <div class="card-glow"></div>
             </div>
             
             <div class="matrix-card">
                 <div class="card-header">
                     <span class="card-index">03</span>
                     <div class="card-icon-container">
-                        <div class="card-icon">⚡</div>
+                        <svg class="corporate-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
                     </div>
                 </div>
                 <h3 class="card-title">From Data to Action</h3>
                 <p class="card-description">
-                    Advanced analytics combined with compelling communication — turning complex data into tools, narratives, and campaigns that drive real change.
+                    Advanced analytics combined with compelling communication—turning complex data into tools, narratives, and campaigns that drive real change.
                 </p>
-                <div class="card-glow"></div>
             </div>
             
             <div class="matrix-card">
                 <div class="card-header">
                     <span class="card-index">04</span>
                     <div class="card-icon-container">
-                        <div class="card-icon">🔗</div>
+                        <svg class="corporate-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
                     </div>
                 </div>
                 <h3 class="card-title">Interdisciplinary Integration</h3>
                 <p class="card-description">
                     Bridging climate, agriculture, health, and energy through One Health and systems thinking for holistic, sustainable outcomes.
                 </p>
-                <div class="card-glow"></div>
             </div>
         </div>
     </div>
-    
-    <div class="distinction-backdrop"></div>
 </section>
-<section class="action-section" id="data-to-action">
+<section class="action-section" id="data-to-action" style="margin-top: -70px;">
     <div class="action-backdrop"></div>
     
     <div class="action-wrapper">
@@ -2853,7 +2778,6 @@
 </section>
  <section class="sector-expertise" id="expertise-focus">
     <div class="sector-wrapper">
-        
         <div class="sector-header reveal">
             <div class="sector-badge">
                 <span class="sector-badge-dot"></span>
@@ -2867,12 +2791,18 @@
             <div class="sector-card reveal">
                 <div class="sector-card-top">
                     <span class="sector-number">01</span>
-                    <div class="sector-icon-box">🌡️</div>
+                    <div class="sector-icon-box">
+                        <svg class="expertise-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                            <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z"></path>
+                            <path d="M12 12L9 21"></path>
+                        </svg>
+                    </div>
                 </div>
-                <h3 class="sector-name">Climate Adaptation & Resilience</h3>
+                <h3 class="sector-name">Resilient Agri-Climate Systems</h3>
                 <ul class="sector-list">
-                    <li>Climate adaptation strategies and national campaigns</li>
-                    <li>Climate risk, resilience communication and policy support</li>
+                    <li>Climate-smart agriculture and food security</li>
+                    <li>Adaptation strategies and national campaigns</li>
                     <li>Early Warning Systems (EWS) and monitoring</li>
                 </ul>
                 <div class="sector-glow"></div>
@@ -2881,13 +2811,17 @@
             <div class="sector-card reveal">
                 <div class="sector-card-top">
                     <span class="sector-number">02</span>
-                    <div class="sector-icon-box">🌱</div>
+                    <div class="sector-icon-box">
+                        <svg class="expertise-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                        </svg>
+                    </div>
                 </div>
-                <h3 class="sector-name">Climate-Smart Agriculture</h3>
+                <h3 class="sector-name">Renewable Energy Systems</h3>
                 <ul class="sector-list">
-                    <li>Climate-smart and resilient agricultural systems</li>
-                    <li>Food security, post-harvest and preservation</li>
-                    <li>Capacity building and community training manuals</li>
+                    <li>Renewable energy uptake and market positioning</li>
+                    <li>Bioenergy systems and resource trade-offs</li>
+                    <li>Community engagement and local resource use</li>
                 </ul>
                 <div class="sector-glow"></div>
             </div>
@@ -2895,27 +2829,17 @@
             <div class="sector-card reveal">
                 <div class="sector-card-top">
                     <span class="sector-number">03</span>
-                    <div class="sector-icon-box">🔌</div>
-                </div>
-                <h3 class="sector-name">Renewable Energy Systems</h3>
-                <ul class="sector-list">
-                    <li>Renewable energy uptake and market positioning</li>
-                    <li>Community engagement around local resources</li>
-                    <li>Bioenergy systems and resource-use trade-offs</li>
-                </ul>
-                <div class="sector-glow"></div>
-            </div>
-
-            <div class="sector-card reveal">
-                <div class="sector-card-top">
-                    <span class="sector-number">04</span>
-                    <div class="sector-icon-box">🩺</div>
+                    <div class="sector-icon-box">
+                        <svg class="expertise-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
                 </div>
                 <h3 class="sector-name">One Health Integration</h3>
                 <ul class="sector-list">
                     <li>Human, animal and environmental health nexus</li>
                     <li>Scientific workshops and applied field training</li>
-                    <li>Disease surveillance and integrated data collection</li>
+                    <li>Integrated disease surveillance and data</li>
                 </ul>
                 <div class="sector-glow"></div>
             </div>
@@ -2923,8 +2847,7 @@
     </div>
     <div class="sector-bg-glow"></div>
 </section>
-
- <section class="impact-section" id="featured-work">
+ <section class="impact-section" id="featured-work" >
     <div class="impact-wrapper">
         
         <div class="impact-header reveal">
