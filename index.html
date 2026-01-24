@@ -71,7 +71,7 @@ nav.scrolled .navigation-menu li a {
 
 /* The Active Link (raspberry color) */
 nav.scrolled .navigation-menu li a.nav-active {
-    color: #ff3377 !important;
+    color: #EF233C !important;
 }
         .nav-links {
             display: flex;
@@ -407,7 +407,7 @@ nav.scrolled .navigation-menu li a.nav-active {
             color: #666;
         }
 
-        /* Conferences Section - Smooth infinite horizontal scrolling gallery */
+   /* Conferences Section - Smooth infinite horizontal scrolling gallery */
 .conferences-section {
     padding: 8% 8%;
     background: #000;
@@ -434,34 +434,110 @@ nav.scrolled .navigation-menu li a.nav-active {
 .gallery-wrapper {
     overflow: hidden;
     width: 100%;
+    margin-bottom: 6rem;
+    position: relative;
 }
 
 .gallery-track {
     display: flex;
     gap: 2rem;
+    width: max-content;
     animation: scroll 60s linear infinite;
-    width: max-content; /* Allows duplication for seamless loop */
+}
+
+.gallery-track:hover {
+    animation-play-state: paused;
 }
 
 .conference-card {
     position: relative;
-    flex: 0 0 420px; /* Fixed width for consistent cards */
-    height: 480px;
+    flex: 0 0 420px;
+    height: 520px;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.conference-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.1) 30%,
+        rgba(0, 0, 0, 0.6) 70%,
+        rgba(0, 0, 0, 0.95) 100%
+    );
+    z-index: 1;
     transition: all 0.4s ease;
-    box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+}
+
+.conference-card:hover::before {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0.3) 30%,
+        rgba(239, 35, 60, 0.7) 70%,
+        rgba(239, 35, 60, 0.95) 100%
+    );
+}
+
+.conference-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(239, 35, 60, 0.3);
 }
 
 .conference-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    object-position: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Remove blur and improve quality */
+    filter: brightness(1.05) contrast(1.08) saturate(1.15);
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
 .conference-card:hover img {
-    transform: scale(1.1);
+    transform: scale(1.08);
+    filter: brightness(1.1) contrast(1.1) saturate(1.2);
+}
+
+/* Keyframes for auto-scrolling */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.language-flag {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    font-size: 2.2rem;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(12px);
+    padding: 0.6rem 0.9rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.conference-card:hover .language-flag {
+    transform: scale(1.15);
+    background: rgba(239, 35, 60, 0.9);
+    box-shadow: 0 8px 25px rgba(239, 35, 60, 0.4);
 }
 
 .conference-overlay {
@@ -469,50 +545,140 @@ nav.scrolled .navigation-menu li a.nav-active {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 2rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-    transition: opacity 0.3s ease;
+    padding: 2.5rem 2rem;
+    background: transparent;
+    z-index: 2;
+    transform: translateY(0);
+    transition: all 0.4s ease;
 }
 
 .conference-card:hover .conference-overlay {
-    opacity: 1;
+    padding-bottom: 3rem;
 }
 
 .conference-overlay h3 {
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: #fff;
+    line-height: 1.3;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
+    letter-spacing: 0.3px;
 }
 
 .conference-overlay p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.conference-card:hover .conference-overlay p {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* Languages Section */
+.languages-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    color: #fff;
+}
+
+.languages-title {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    letter-spacing: 0.5px;
+}
+
+.languages-content {
+    margin-bottom: 3rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+}
+
+.languages-content strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.language-bars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.8rem 2rem;
+}
+
+.lang-bar-item {
+    text-align: left;
+}
+
+.lang-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.6rem;
+}
+
+.flag-large {
+    font-size: 2.8rem;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+}
+
+.lang-name {
+    font-weight: 600;
     font-size: 1rem;
-    color: #ddd;
 }
 
-/* Infinite scroll animation */
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%); /* Moves exactly half (duplicated set) */
-    }
+.progress-bar {
+    width: 100%;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50px;
+    height: 24px;
+    overflow: hidden;
 }
 
-/* Pause on hover for better interaction */
-.gallery-wrapper:hover .gallery-track {
-    animation-play-state: paused;
+.progress-fill {
+    height: 100%;
+    background: #EF233C;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: 50px;
+    transition: width 1s ease-in-out;
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
     .conference-card {
-        flex: 0 0 300px;
-        height: 400px;
+        flex: 0 0 340px;
+        height: 460px;
     }
     
-    .gallery-track {
-        gap: 1.5rem;
+    .conference-overlay h3 {
+        font-size: 1.3rem;
+    }
+    
+    .conference-overlay p {
+        font-size: 0.95rem;
+    }
+    
+    .language-bars {
+        grid-template-columns: 1fr;
+    }
+    
+    .flag-large {
+        font-size: 2.2rem;
     }
 }
 
@@ -617,8 +783,7 @@ nav.scrolled .navigation-menu li a.nav-active {
         font-size: 5.5rem;
     }
 }
-
-        /* About Section */
+  /* About Section */
         .about-section {
             padding: 10% 8%;
             background: #fff;
@@ -642,6 +807,202 @@ nav.scrolled .navigation-menu li a.nav-active {
             color: #333;
             margin-bottom: 2rem;
         }
+/* =========================
+   ABOUT SECTION
+========================= */
+.profile-section {
+    background: #000;
+    padding: 5rem 5% 3rem; /* reduced bottom padding to kill the gap */
+    position: relative;
+    overflow: hidden;
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+.sector-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.sector-title {
+    color: #EF233C;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+}
+
+/* =========================
+   MAIN GRID
+========================= */
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: flex-start; /* KEY FIX */
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================
+   VISUAL / IMAGE
+========================= */
+.profile-visual {
+    position: relative;
+    animation: fadeInLeft 1s ease-out;
+}
+
+.visual-frame {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+.visual-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(10%);
+    transition: all 0.4s ease;
+}
+
+.visual-frame:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
+.frame-accent {
+    position: absolute;
+    top: -16px;
+    left: -16px;
+    right: 16px;
+    bottom: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    pointer-events: none;
+}
+
+/* =========================
+   NARRATIVE / TEXT
+========================= */
+.profile-narrative {
+    text-align: center;
+    animation: fadeInRight 1s ease-out 0.2s both;
+}
+
+.narrative-title {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.title-highlight {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+}
+
+.narrative-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.narrative-content p {
+    text-align: justify;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05rem;
+}
+
+.narrative-emphasis {
+    font-weight: 500;
+}
+
+/* =========================
+   STATS – SECTION WRAP-UP
+========================= */
+.section-stats {
+    margin: 4rem auto 2rem;
+}
+
+.narrative-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+}
+
+.stat-number {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #EF233C;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.stat-divider {
+    width: 1px;
+    height: 42px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+    );
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+    .profile-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .profile-visual {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .narrative-title {
+        font-size: 2rem;
+    }
+
+    .narrative-content p {
+        font-size: 1rem;
+    }
+
+    .stat-divider {
+        display: none;
+    }
+}
+
+
 
         /* Contact Section */
         .contact-section {
@@ -689,42 +1050,65 @@ nav.scrolled .navigation-menu li a.nav-active {
             transform: translateY(-3px);
         }
 
-        /* Footer */
-        footer {
-            background: #000;
-            color: #fff;
-            padding: 4rem 8%;
-            border-top: 1px solid #222;
-        }
+     /* Footer */
+footer {
+    background: #000;
+    color: #fff;
+    padding: 4rem 5%; /* make side padding flexible for small screens */
+    border-top: 1px solid #222;
+}
 
-        .footer-content {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.footer-content {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* allow wrapping on small screens */
+    gap: 2rem; /* space between items */
+}
 
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
+.footer-links {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap; /* wrap links on small screens */
+}
 
-        .footer-links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: opacity 0.3s ease;
-        }
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: opacity 0.3s ease;
+}
 
-        .footer-links a:hover {
-            opacity: 0.5;
-        }
+.footer-links a:hover {
+    opacity: 0.5;
+}
 
-        .footer-copy {
-            font-size: 0.9rem;
-            color: #666;
-        }
+.footer-copy {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column; /* stack items vertically */
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .footer-links {
+        justify-content: center; /* center links */
+        gap: 1rem; /* smaller gap between links */
+    }
+
+    .footer-copy {
+        margin-top: 1rem;
+    }
+}
+
 
         /* Responsive */
         @media (max-width: 1024px) {
@@ -846,7 +1230,7 @@ nav.scrolled .navigation-menu li a.nav-active {
 }
 
 .headline-emphasis {
-    background: linear-gradient(135deg, #ff3377 0%, #ff3377 100%);
+    background: linear-gradient(135deg, #EF233C 0%, #EF233C 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -902,7 +1286,7 @@ nav.scrolled .navigation-menu li a.nav-active {
 }
 
 .action-visual-card:hover {
-    border-color: rgba(255, 0, 84, 0.4);
+    border-color: #EF233C;
     transform: translateY(-10px);
 }
 
@@ -910,7 +1294,7 @@ nav.scrolled .navigation-menu li a.nav-active {
     position: absolute;
     top: 50%; left: 50%;
     width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(255, 0, 84, 0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, #EF233C 0%, transparent 70%);
     filter: blur(40px);
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -933,10 +1317,9 @@ nav.scrolled .navigation-menu li a.nav-active {
     color: #fff;
     margin-bottom: 3rem;
 }
-
 .play-button {
     background: transparent;
-    border: 2px solid #ff3377;
+    border: 2px solid #EF233C;
     color: #fff;
     padding: 1rem 2.5rem;
     border-radius: 50px;
@@ -947,11 +1330,13 @@ nav.scrolled .navigation-menu li a.nav-active {
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    text-decoration: none; /* REMOVE underline */
 }
 
 .play-button:hover {
-    background: #ff3377;
+    background: #EF233C;
     box-shadow: 0 0 25px rgba(255, 0, 84, 0.4);
+    text-decoration: none; /* ensure no underline on hover */
 }
 
 /* --- FINAL QUOTE SECTION --- */
@@ -967,12 +1352,13 @@ nav.scrolled .navigation-menu li a.nav-active {
 }
 
 .main-quote strong {
-    color: #ff3377;
+    color: #EF233C;
     font-weight: 800;
     display: block;
     margin-top: 10px;
-    text-shadow: 0 0 15px rgba(255, 0, 84, 0.3);
+    /* text-shadow removed */
 }
+
 
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 968px) {
@@ -1026,24 +1412,24 @@ nav.scrolled .navigation-menu li a.nav-active {
         font-size: 1.15rem;
     }
 }
-
+/* ---------------- Navigation Styles ---------------- */
 /* Navigation Styles */
 .primary-navigation {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: black;
-    backdrop-filter: blur(10px);
+    background: black; /* solid black background */
     padding: 1.5rem 5%;
     z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: center;
 }
 
 .navigation-wrapper {
+    width: 100%;
     max-width: 1400px;
-    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1056,14 +1442,13 @@ nav.scrolled .navigation-menu li a.nav-active {
     text-decoration: none;
     letter-spacing: 8px;
     transition: all 0.3s ease;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .brand-logo:hover {
     letter-spacing: 12px;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
 }
 
+/* Menu Desktop */
 .navigation-menu {
     display: flex;
     list-style: none;
@@ -1075,16 +1460,12 @@ nav.scrolled .navigation-menu li a.nav-active {
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
-    transition: all 0.3s ease;
     position: relative;
 }
 
-.navigation-menu li a.nav-active {
-    color: #ff3377;
-}
-
-.navigation-menu li a.nav-active::after {
-    width: 100%;
+.navigation-menu li a.nav-active,
+.navigation-menu li a:hover {
+    color: #EF233C;
 }
 
 .navigation-menu li a::after {
@@ -1094,19 +1475,81 @@ nav.scrolled .navigation-menu li a.nav-active {
     left: 0;
     width: 0;
     height: 2px;
-    background: #ff3377;
+    background: #EF233C;
     transition: width 0.3s ease;
-}
-
-.navigation-menu li a:hover {
-    color: #ff3377;
 }
 
 .navigation-menu li a:hover::after {
     width: 100%;
 }
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none; /* hidden by default */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+    margin-right: 20px;
+}
 
-/* Hero Section Styles */
+.mobile-menu-toggle .bar {
+    height: 3px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+
+    /* Show toggle only on mobile */
+    .mobile-menu-toggle.show-toggle {
+        display: flex; /* only visible on mobile and when .show-toggle is added via JS */
+    }
+
+    .navigation-menu {
+        position: fixed;
+        top: 0;
+        right: -100%; /* start hidden */
+        width: 250px;
+        height: 100%;
+        background: black;
+        flex-direction: column;
+        padding: 5rem 2rem;
+        gap: 2rem;
+        transition: right 0.3s ease;
+        z-index: 1050;
+    }
+
+    .navigation-menu.open {
+        right: 0; /* slide in */
+    }
+
+    /* Transform hamburger into X when active */
+    .mobile-menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .mobile-menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .mobile-menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+}
+
+/* Ensure toggle is never shown on desktop */
+@media (min-width: 769px) {
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+}
+
+/* ---------------- Hero / Landing Section ---------------- */
 .landing-showcase {
     min-height: 100vh;
     display: grid;
@@ -1114,22 +1557,34 @@ nav.scrolled .navigation-menu li a.nav-active {
     align-items: center;
     gap: 4rem;
     padding: 8rem 5% 4rem;
-    max-width: 1400px;
-    margin: 0 auto;
     position: relative;
-    background: #000;
+    background: #000; /* full-width black background */
+    overflow: hidden; /* prevents content overflow */
+    width: 100vw; /* ensures full viewport width */
+    left: 0;
+    margin: 0; /* remove auto centering for full-width background */
+    box-sizing: border-box;
+}
+
+.landing-showcase .landing-container {
+    max-width: 1400px; /* content width */
+    margin: 0 auto; /* center the content inside the full-width black background */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    z-index: 2;
 }
 
 .landing-showcase::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -50%;
-    width: 200%;
+    left: 0;
+    width: 100%;
     height: 100%;
-    background: black;
+    background: linear-gradient(120deg, rgba(0,0,0,0.95), rgba(0,0,0,0.95));
     pointer-events: none;
-    animation: gradientShift 15s ease-in-out infinite;
+    z-index: 1;
 }
 
 .landing-showcase::after {
@@ -1139,24 +1594,21 @@ nav.scrolled .navigation-menu li a.nav-active {
     right: 10%;
     width: 300px;
     height: 300px;
-    background: black;
+    background: #EF233C;
     border-radius: 50%;
     filter: blur(80px);
     animation: float 8s ease-in-out infinite;
+    z-index: 0;
 }
 
-@keyframes gradientShift {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(10%); }
-}
-
+/* Hero Animations */
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-30px); }
 }
 
 .showcase-content {
-    z-index: 2;
+    z-index: 2; /* content above background effects */
 }
 
 .content-wrapper {
@@ -1174,13 +1626,41 @@ nav.scrolled .navigation-menu li a.nav-active {
     }
 }
 
+/* Responsive Hero */
+@media (max-width: 1024px) {
+    .landing-showcase {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 6rem 5% 3rem;
+    }
+}
+
+
 .greeting-text {
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: 1rem;
     letter-spacing: 3px;
-    font-weight: 300;
+    font-weight: 700;
     text-transform: uppercase;
+}
+/* Mobile adjustments for greeting text */
+@media (max-width: 768px) {
+    .greeting-text {
+        font-size: 0.95rem;      
+        margin-top: 10rem;       /* pushed much further down */
+        text-align: center;      
+        letter-spacing: 2px;     
+    }
+}
+
+@media (max-width: 480px) {
+    .greeting-text {
+        font-size: 0.85rem;      
+        margin-top: 12rem;       /* big push on very small screens */
+        text-align: center;
+        letter-spacing: 1.5px;   
+    }
 }
 
 .main-heading {
@@ -1208,13 +1688,13 @@ nav.scrolled .navigation-menu li a.nav-active {
 }
 
 .role-dynamic {
-    color: #ff3377;
+    color: #EF233C;
     min-width: 220px;
     text-shadow: 0 0 20px rgba(255, 0, 84, 0.4);
 }
 
 .typing-cursor {
-    color: #ff3377;
+    color: #EF233C;
     animation: blink 1s step-end infinite;
     font-weight: 300;
     font-size: 2.5rem;
@@ -1250,7 +1730,7 @@ nav.scrolled .navigation-menu li a.nav-active {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 0, 84, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, #EF233C, transparent);
     transition: left 0.6s ease;
 }
 
@@ -1259,7 +1739,7 @@ nav.scrolled .navigation-menu li a.nav-active {
 }
 
 .explore-button:hover {
-    border-color: #ff3377;
+    border-color: #EF233C;
     background: rgba(255, 0, 84, 0.05);
     box-shadow: 0 0 40px rgba(255, 0, 84, 0.2), inset 0 0 20px rgba(255, 0, 84, 0.1);
     transform: translateY(-3px);
@@ -1274,7 +1754,6 @@ nav.scrolled .navigation-menu li a.nav-active {
 .explore-button:hover .button-arrow {
     transform: translateX(8px);
 }
-
 .showcase-visual {
     position: relative;
     z-index: 2;
@@ -1299,29 +1778,7 @@ nav.scrolled .navigation-menu li a.nav-active {
     }
 }
 
-.image-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 130%;
-    height: 130%;
-    background: radial-gradient(circle, rgba(255, 0, 84, 0.25) 0%, transparent 70%);
-    filter: blur(70px);
-    animation: pulse 4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { 
-        opacity: 0.6; 
-        transform: translate(-50%, -50%) scale(1); 
-    }
-    50% { 
-        opacity: 1; 
-        transform: translate(-50%, -50%) scale(1.15); 
-    }
-}
-
+/* Image styling – clean, no glow */
 .image-container img {
     width: 100%;
     height: auto;
@@ -1329,27 +1786,21 @@ nav.scrolled .navigation-menu li a.nav-active {
     position: relative;
     z-index: 1;
     border-radius: 0;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(255, 0, 84, 0.15);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
+/* Subtle hover effect (no color glow) */
 .image-container:hover img {
-    transform: translateY(-10px);
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7), 0 0 80px rgba(255, 0, 84, 0.25);
+    transform: translateY(-8px);
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.45);
 }
 
 /* Decorative Elements */
 .landing-showcase .content-wrapper::before {
-    content: '';
-    position: absolute;
-    left: -30px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 120px;
-    background: linear-gradient(to bottom, transparent, #ff3377, transparent);
-    animation: lineGlow 3s ease-in-out infinite;
+    display: none;
 }
+
 
 @keyframes lineGlow {
     0%, 100% { opacity: 0.3; }
@@ -1507,7 +1958,68 @@ nav.scrolled .navigation-menu li a.nav-active {
     right: 25px;
     bottom: 25px;
 }
+.video-slider-section {
+    padding: 4rem 0;
+    max-width: 1400px;
+    margin: 0 auto;
+}
 
+.video-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.slider-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    font-size: 3rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.slider-btn:hover {
+    background: #EF233C;
+}
+
+.slider-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.slider-btn:disabled:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.videos-wrapper {
+    overflow: hidden;
+    flex: 1;
+}
+
+.videos-track {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.4s ease;
+}
+
+.video-container {
+    min-width: 400px;
+    aspect-ratio: 16/9;
+    flex-shrink: 0;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: none;
+}
 /* Narrative Section */
 .profile-narrative {
     animation: fadeInRight 1s ease-out 0.2s both;
@@ -1534,13 +2046,13 @@ nav.scrolled .navigation-menu li a.nav-active {
 .label-line {
     width: 60px;
     height: 2px;
-    background: linear-gradient(to right, #ff3377, transparent);
+    background: linear-gradient(to right, #EF233C, transparent);
 }
 
 .label-text {
     font-size: 0.9rem;
     letter-spacing: 3px;
-    color: #ff3377;
+    color: #EF233C;
     font-weight: 600;
 }
 
@@ -1586,22 +2098,34 @@ nav.scrolled .navigation-menu li a.nav-active {
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.85);
     padding-left: 1.5rem;
-    border-left: 3px solid #ff3377;
+    border-left: 3px solid #EF233C;
     margin-top: 2rem;
     font-style: italic;
 }
 /* Stats Section */
 .narrative-stats {
     display: flex;
-    justify-content: center; /* Centers the group horizontally */
+    justify-content: center;  /* Centers the group horizontally */
     align-items: center;
     gap: 3rem;
     padding: 2.5rem 0;
-    margin: 0 auto;         /* Ensures the container itself is centered */
-    max-width: 900px;       /* Keeps the bar from stretching too wide */
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 auto;
+    max-width: 900px;
+    border-top: none;
+    border-bottom: none;
+
+    /* NEW: fix divider spacing for perfect centering */
+    flex-wrap: nowrap;
 }
+.narrative-stats::before,
+.narrative-stats::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+    margin: 1rem 0;   /* spacing above/below the text */
+}
+
 
 .stat-item {
     display: flex;
@@ -1615,9 +2139,9 @@ nav.scrolled .navigation-menu li a.nav-active {
 .stat-number {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #ff3377;
+    color: #EF233C;
     line-height: 1;
-    text-shadow: 0 0 20px rgba(255, 0, 84, 0.3);
+    text-shadow: 0 0 20px #EF233C;
 }
 
 .stat-label {
@@ -1631,7 +2155,9 @@ nav.scrolled .navigation-menu li a.nav-active {
     width: 1px;
     height: 50px;
     background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
+    flex-shrink: 0;  /* Prevents dividers from shrinking and breaking alignment */
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -1645,62 +2171,94 @@ nav.scrolled .navigation-menu li a.nav-active {
     }
 }
 
+/* Mobile layout for About Me section */
 @media (max-width: 768px) {
     .profile-section {
-        padding: 5rem 5%;
+        padding-top: 8rem; /* push the entire section down */
     }
-    
-    .narrative-title {
-        font-size: 2.5rem;
-    }
-    
-    .narrative-intro,
-    .narrative-body {
-        font-size: 1rem;
-    }
-    
-    .narrative-stats {
-        gap: 2rem;
-    }
-    
-    .stat-number {
-        font-size: 2rem;
-    }
-    
-    .stat-label {
-        font-size: 0.8rem;
-    }
-}
 
-@media (max-width: 640px) {
+    .profile-container {
+        display: flex;          
+        flex-direction: column; /* stack everything vertically */
+        align-items: center;
+        gap: 2rem;
+    }
+
+    /* Move About Me title above the image */
+    .sector-header {
+        order: 0;              /* put title above image */
+        margin-bottom: 1rem;
+    }
+
+    .profile-visual {
+        order: 1;               /* image comes after title */
+        width: 90%;             
+        margin: 0 auto 1.5rem; 
+    }
+
+    .profile-narrative {
+        order: 2;               /* narrative below image */
+        text-align: center;
+        width: 100%;
+    }
+
     .narrative-title {
         font-size: 2rem;
+        margin-top: 1rem;
+        line-height: 1.3;
     }
-    
+
+    .narrative-content {
+        margin-top: 1rem;
+        padding: 0 1rem;
+    }
+
     .narrative-stats {
-        flex-direction: column;
-        gap: 2rem;
-        align-items: flex-start;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1rem;
     }
-    
+
+    .stat-item {
+        min-width: 60px;
+        margin-bottom: 0.5rem;
+    }
+
     .stat-divider {
         display: none;
     }
-    
-    .frame-accent {
-        top: -10px;
-        left: -10px;
-        right: 10px;
-        bottom: 10px;
-    }
-    
-    .visual-frame:hover .frame-accent {
-        top: -15px;
-        left: -15px;
-        right: 15px;
-        bottom: 15px;
+
+    /* Push the hero intro down */
+    .hero-intro {              
+        margin-top: 12rem;      
+        text-align: center;
     }
 }
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .profile-section {
+        padding-top: 10rem; /* extra push down on small screens */
+    }
+
+    .profile-visual {
+        width: 100%;           
+        margin-bottom: 1.5rem;
+    }
+
+    .narrative-title {
+        font-size: 1.8rem;
+    }
+
+    .narrative-content p {
+        font-size: 0.95rem;
+    }
+
+    .hero-intro {
+        margin-top: 14rem;      
+    }
+}
+
 /* Differentiator Section */
 .distinction-showcase {
     background: #000;
@@ -1782,18 +2340,20 @@ nav.scrolled .navigation-menu li a.nav-active {
 }
 
 .headline-emphasis {
-    background: linear-gradient(135deg, #ff3377 0%, #ff3377 100%);
+    background: linear-gradient(135deg, #EF233C 0%, #EF233C 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .distinction-tagline {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.7);
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.8;
+    max-width: 800px;           /* keeps text from stretching too far */
+    margin: 0 auto 2rem auto;   /* centers and adds bottom spacing */
+    text-align: justify;         /* aligns left and right edges */
+    text-justify: inter-word;    /* improves spacing between words */
+    line-height: 1.8;            /* comfortable spacing */
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* Matrix Grid */
@@ -1829,6 +2389,7 @@ nav.scrolled .navigation-menu li a.nav-active {
     }
 }
 
+/* Subtle top line on hover */
 .matrix-card::before {
     content: '';
     position: absolute;
@@ -1836,7 +2397,7 @@ nav.scrolled .navigation-menu li a.nav-active {
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #ff3377, transparent);
+    background: linear-gradient(90deg, rgba(255,255,255,0.3), transparent); /* changed from pink */
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.5s ease;
@@ -1848,9 +2409,9 @@ nav.scrolled .navigation-menu li a.nav-active {
 
 .matrix-card:hover {
     background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 0, 84, 0.3);
+    border-color: rgba(255, 255, 255, 0.2); /* changed from pink */
     transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 0, 84, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.1); /* toned down glow */
 }
 
 .card-glow {
@@ -1860,7 +2421,7 @@ nav.scrolled .navigation-menu li a.nav-active {
     transform: translate(-50%, -50%);
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(255, 0, 84, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%); /* changed from pink */
     filter: blur(60px);
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -1880,14 +2441,24 @@ nav.scrolled .navigation-menu li a.nav-active {
 .card-index {
     font-size: 3rem;
     font-weight: 700;
-    color: rgba(255, 0, 84, 0.3);
+    color: rgba(255, 255, 255, 0.6); /* changed from pink */
     line-height: 1;
     transition: all 0.3s ease;
 }
 
 .matrix-card:hover .card-index {
-    color: #ff3377;
+    color: rgba(255, 255, 255, 0.8); /* subtle highlight on hover */
 }
+
+/* Icons color */
+.corporate-icon {
+    stroke: rgba(255, 255, 255, 0.6); /* changed from pink/red */
+}
+
+.matrix-card:hover .corporate-icon {
+    stroke: rgba(255, 255, 255, 0.8);
+}
+
 
 /* Updated Corporate Icon Container */
 .card-icon-container {
@@ -1905,14 +2476,14 @@ nav.scrolled .navigation-menu li a.nav-active {
 .corporate-icon {
     width: 26px;
     height: 26px;
-    color: #ff3377;
+    color: #EF233C;
     stroke-width: 1.5;
     transition: all 0.4s ease;
 }
 
 .matrix-card:hover .card-icon-container {
-    background: #ff3377;
-    border-color: #ff3377;
+    background: #EF233C;
+    border-color: #EF233C;
     transform: scale(1.05);
 }
 
@@ -1950,7 +2521,7 @@ nav.scrolled .navigation-menu li a.nav-active {
     .distinction-headline { font-size: 2.5rem; }
     .card-title { font-size: 1.5rem; }
 }
-
+/* --- SECTOR EXPERTISE CSS --- */
 /* --- SECTOR EXPERTISE CSS --- */
 .sector-expertise {
     background: #000;
@@ -1977,7 +2548,7 @@ nav.scrolled .navigation-menu li a.nav-active {
     align-items: center;
     gap: 10px;
     background: rgba(255, 0, 84, 0.1);
-    border: 1px solid rgba(255, 0, 84, 0.3);
+    border: 1px solid #EF233C;
     padding: 8px 20px;
     border-radius: 50px;
     margin-bottom: 2rem;
@@ -1986,9 +2557,9 @@ nav.scrolled .navigation-menu li a.nav-active {
 .sector-badge-dot {
     width: 8px;
     height: 8px;
-    background: #ff3377;
+    background: #EF233C;
     border-radius: 50%;
-    box-shadow: 0 0 10px #ff3377;
+    box-shadow: 0 0 10px #EF233C;
 }
 
 .sector-badge-text {
@@ -2006,7 +2577,7 @@ nav.scrolled .navigation-menu li a.nav-active {
 /* --- THE GRID (Forced 3 Columns) --- */
 .sector-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Ensures one row on desktop */
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
@@ -2020,52 +2591,41 @@ nav.scrolled .navigation-menu li a.nav-active {
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     display: flex;
     flex-direction: column;
-    min-height: 420px; /* Keeps cards uniform height */
+    align-items: center;
+    text-align: center;
+    min-height: 420px;
 }
 
 .sector-card:hover {
     background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 0, 84, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-10px);
 }
 
-.sector-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 2rem;
-}
-
-.sector-number {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: rgba(255, 0, 84, 0.5);
-    font-family: 'Inter', sans-serif;
-}
-
-/* Corporate Icon Box */
-.sector-icon-box {
-    width: 64px;
-    height: 64px;
+/* Centered Large Icon Box */
+.sector-icon-box-center {
+    width: 120px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: 50%;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.4s ease;
+    margin-bottom: 2rem;
 }
 
 .expertise-svg {
-    width: 30px;
-    height: 30px;
-    color: #ff3377;
+    width: 60px;
+    height: 60px;
+    color: rgba(255, 255, 255, 0.7);
     stroke-width: 1.5;
 }
 
-.sector-card:hover .sector-icon-box {
-    background: #ff3377;
-    border-color: #ff3377;
+.sector-card:hover .sector-icon-box-center {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .sector-card:hover .expertise-svg {
@@ -2078,7 +2638,6 @@ nav.scrolled .navigation-menu li a.nav-active {
     margin-bottom: 1.5rem;
     line-height: 1.3;
 }
-
 .sector-list {
     list-style: none;
     padding: 0;
@@ -2090,168 +2649,421 @@ nav.scrolled .navigation-menu li a.nav-active {
     color: rgba(255, 255, 255, 0.6);
     line-height: 1.5;
     margin-bottom: 0.8rem;
-    position: relative;
-    padding-left: 18px;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 10px; /* controls space between dot and text */
 }
 
 .sector-list li::before {
     content: '';
-    position: absolute;
-    left: 0;
-    top: 10px;
+    flex-shrink: 0;
     width: 4px;
     height: 4px;
-    background: #ff3377;
+    margin-top: 0.55em; /* vertically aligns dot with first line */
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 50%;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .sector-grid { grid-template-columns: repeat(2, 1fr); } /* 2 on tablets */
-}
-
+/* --- Mobile adjustments for Sector Expertise --- */
 @media (max-width: 768px) {
-    .sector-grid { grid-template-columns: 1fr; } /* 1 on mobile */
-    .sector-card { min-height: auto; }
+    .sector-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .sector-card {
+        padding: 2rem 1.5rem;
+        min-height: auto;
+    }
+
+    .sector-icon-box-center {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1.5rem;
+    }
+
+    .expertise-svg {
+        width: 50px;
+        height: 50px;
+    }
+
+    .sector-name {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+        word-break: break-word;
+    }
+
+    .sector-subtitle {
+        max-width: 900px;
+        margin: 1rem auto 0;
+        text-align: center;
+        padding: 0 1rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: rgba(255,255,255,0.8);
+    }
+
+    .sector-list li {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        padding-left: 16px;
+    }
+
+    .sector-list li::before {
+        left: 0;
+        top: 9px;
+        width: 3px;
+        height: 3px;
+    }
+
+    .sector-badge {
+        padding: 6px 16px;
+        font-size: 0.75rem;
+    }
 }
-/* --- IMPACT PROJECTS CSS --- */
-.impact-section {
-    background: #000;
-    padding: 6rem 5% 10rem; /* Reduced top padding for efficiency */
-    color: #fff;
+.featured-projects {
     position: relative;
+    padding: 100px 20px;
+    background-color: #000; /* pure black */
+    width: 100%;
+    border: none;           /* remove any border */
+    box-shadow: none;       /* remove any shadow */
 }
 
-.impact-wrapper {
-    max-width: 1400px; /* Wider container for better space usage */
+
+.featured-projects .container {
+    max-width: 1330px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    background: transparent; /* ensure it doesn't create a "box" */
 }
 
-.impact-header {
-    margin-bottom: 4rem;
+
+.featured-projects .container {
+    position: relative;
+    z-index: 1;
 }
 
-.impact-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 6px 15px;
-    border-radius: 4px;
-    margin-bottom: 1.5rem;
-}
-
-.impact-dot {
-    width: 6px; height: 6px;
-    background: #ff3377;
-    border-radius: 50%;
-}
-
-.impact-label {
-    font-size: 0.75rem;
-    letter-spacing: 1.5px;
+.project-title {
+    text-align: center;
+    font-size: 2.8em;
+    margin-bottom: 70px;
+    color: #EF233C;
+    text-transform: uppercase;
     font-weight: 700;
+    letter-spacing: 2px;
 }
 
-.impact-headline {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    margin-bottom: 1rem;
+.projects-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
 }
 
-.impact-subheadline {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1.1rem;
-}
-
-/* --- THE EFFICIENT GRID --- */
-.impact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 Columns saves vertical space */
-    gap: 2rem;
-}
-
-.impact-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.4s ease;
+.project1 {
+    position: relative;
+    text-align: center;
+    width: calc(33.33% - 20px);
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255,255,255,0.02);
+    border-radius: 20px;
+    /* border: 1px solid rgba(255,255,255,0.1); */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
-}
-
-.impact-card:hover {
-    border-color: #ff3377;
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.04);
-}
-
-.impact-image-box {
-    position: relative;
-    height: 220px;
+    justify-content: space-between;
     overflow: hidden;
 }
 
-.impact-image-box img {
+.project1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #EF233C, transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project1:hover::before {
+    transform: scaleX(1);
+}
+
+.project1:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: #EF233C;
+    transform: translateY(-10px);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.5), 0 0 50px rgba(255,0,84,0.15);
+}
+
+.project1 img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project1:hover img {
+    transform: scale(1.08);
+}
+
+.text-container {
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 12px;
+}
+
+.project1 h3 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+}
+
+.project1 p {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 20px;
+    padding: 0 5px;
+    flex-grow: 1;
+    line-height: 1.7;
+    font-size: 0.98rem;
+}
+
+.read-more-btn {
+    background: transparent;
+    border: 2px solid #EF233C;
+    color: #EF233C;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    margin-top: auto;
+    align-self: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.95rem;
+}
+
+.read-more-btn:hover {
+    background: #EF233C;
+    color: #fff;
+    box-shadow: 0 0 30px rgba(255,0,84,0.5);
+    transform: scale(1.05);
+}
+
+.project1 .card-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(255,0,84,0.18) 0%, transparent 70%);
+    filter: blur(70px);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.project1:hover .card-glow {
+    opacity: 1;
+}
+
+.project-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(8px);
+    padding: 40px 20px;
 }
 
-.impact-card:hover .impact-image-box img {
-    transform: scale(1.1);
+.project-modal.show {
+    display: flex;
+    opacity: 1;
 }
 
-.impact-overlay {
+.modal-content {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    transform: translateY(-20px) scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+}
+
+.project-modal.show .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.close {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
-    width: 35px;
-    height: 35px;
+    top: 20px;
+    right: 20px;
+    font-size: 32px;
+    font-weight: 300;
+    color: #fff;
+    cursor: pointer;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.6);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    border: 1px solid #ff3377;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    line-height: 1;
 }
 
-.impact-num {
-    font-size: 0.8rem;
+.close:hover {
+    background: rgba(239, 35, 60, 0.9);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.modal-body img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.modal-text {
+    padding: 40px 50px 50px 50px;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.modal-text h2 {
+    color: #EF233C;
+    margin-bottom: 25px;
+    margin-top: 0;
+    font-size: 28px;
     font-weight: 700;
-    color: #ff3377;
-}
-
-.impact-content {
-    padding: 1.5rem;
-    flex-grow: 1;
-}
-
-.impact-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.8rem;
+    letter-spacing: 0.5px;
     line-height: 1.3;
-    color: #fff;
 }
 
-.impact-desc {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.6);
-    line-height: 1.5;
+.modal-text p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 18px;
 }
 
-/* --- RESPONSIVENESS --- */
-@media (max-width: 1100px) {
-    .impact-grid { grid-template-columns: repeat(2, 1fr); }
+.modal-text strong {
+    color: #EF233C;
+    font-weight: 600;
 }
 
-@media (max-width: 768px) {
-    .impact-grid { grid-template-columns: 1fr; }
-    .impact-section { padding: 4rem 5% 6rem; }
+.modal-text ul {
+    margin-bottom: 20px;
 }
 
+.modal-text li {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.modal-text a {
+    color: #EF233C;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.modal-text a:hover {
+    text-decoration: underline;
+    color: #d91e36;
+}
+
+@media screen and (max-width: 992px) {
+    .project1 {
+        width: calc(50% - 15px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .featured-projects {
+        padding: 60px 15px;
+    }
+    
+    .project-title {
+        font-size: 2.2em;
+        margin-bottom: 50px;
+    }
+    
+    .project1 {
+        width: 100%;
+    }
+    
+    .project-modal {
+        padding: 20px 10px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .modal-body img {
+        height: 250px;
+    }
+    
+    .modal-text {
+        padding: 30px 25px;
+    }
+    
+    .modal-text h2 {
+        font-size: 22px;
+    }
+    
+    .close {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 28px;
+    }
+}
 /* --- PEOPLE-CENTRED APPROACH CSS --- */
 .human-approach {
     background: #000;
@@ -2275,7 +3087,7 @@ nav.scrolled .navigation-menu li a.nav-active {
 .human-line {
     height: 1px;
     width: 60px;
-    background: #ff3377;
+    background: #EF233C;
 }
 
 .human-title {
@@ -2286,23 +3098,25 @@ nav.scrolled .navigation-menu li a.nav-active {
 /* --- THE PANEL SYSTEM --- */
 .human-panel {
     display: grid;
-    grid-template-columns: 1.2fr 1fr; /* Image wider than text for impact */
-    gap: 0; /* Removing gap for a "Split Screen" look */
-    margin-bottom: 4rem; /* Reduced margin for efficiency */
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 4rem;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 20px;
     overflow: hidden;
+    min-height: 600px;
 }
 
 .human-panel.reverse {
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 /* Image Side */
 .human-image-side {
     position: relative;
-    height: 500px;
+    height: 100%;
+    min-height: 600px;
     overflow: hidden;
 }
 
@@ -2332,10 +3146,11 @@ nav.scrolled .navigation-menu li a.nav-active {
 
 /* Text Side */
 .human-text-side {
-    padding: 4rem;
+    padding: 4rem 3rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .human-panel.reverse .human-image-side { order: 2; }
@@ -2344,24 +3159,56 @@ nav.scrolled .navigation-menu li a.nav-active {
 .human-lead {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #ff3377;
+    color: #EF233C;
     line-height: 1.4;
     margin-bottom: 2rem;
 }
 
-.human-text-side p:not(.human-lead) {
+.human-text-side p:not(.human-lead):not(.quote-text) {
     font-size: 1.05rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Quote Box */
+.human-quote-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(239, 35, 60, 0.1);
+    padding: 2rem;
+    border-left: 4px solid #EF233C;
+    border-radius: 8px;
+}
+
+.quote-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 0 20px 30px;
+    border-color: transparent transparent transparent #EF233C;
+    flex-shrink: 0;
+}
+
+.quote-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: #EF233C;
+    font-weight: 500;
+    margin: 0;
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
     .human-panel, .human-panel.reverse {
         grid-template-columns: 1fr;
+        min-height: auto;
     }
-    .human-image-side { height: 350px; }
+    .human-image-side { 
+        height: 400px;
+        min-height: 400px;
+    }
     .human-panel.reverse .human-image-side { order: 1; }
     .human-panel.reverse .human-text-side { order: 2; }
     .human-text-side { padding: 3rem 2rem; }
@@ -2370,44 +3217,55 @@ nav.scrolled .navigation-menu li a.nav-active {
 @media (max-width: 768px) {
     .human-header { margin-bottom: 3rem; }
     .human-lead { font-size: 1.25rem; }
+    .quote-text { font-size: 1rem; }
+    .human-quote-box { padding: 1.5rem; }
 }
-
 /* --- CONTACT/CONNECT SECTION CSS --- */
 .connect-section {
     background: #000;
-    padding: 10rem 5%;
+    padding: 8rem 5%;
     position: relative;
     overflow: hidden;
 }
 
 .connect-wrapper {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
+}
+
+.connect-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.connect-main-title {
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    font-weight: 700;
+    color: #EF233C;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .connect-content {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 4rem;
-    
-    /* This is the key line to center the image vertically */
-    align-items: center; 
-    
-    max-width: 1200px;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    max-width: 1400px;
     margin: 0 auto;
 }
+
 /* Text Side */
 .connect-text-side {
-    padding: 5rem;
     position: relative;
     z-index: 2;
 }
 
 .connect-badge {
-    color: #ff3377;
+    color: #EF233C;
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
 }
@@ -2421,9 +3279,9 @@ nav.scrolled .navigation-menu li a.nav-active {
 }
 
 .connect-message {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.75);
     margin-bottom: 3rem;
     font-weight: 300;
 }
@@ -2431,42 +3289,43 @@ nav.scrolled .navigation-menu li a.nav-active {
 .connect-actions {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .connect-button {
-    padding: 1.2rem 2.8rem;
+    padding: 1.4rem 3.2rem;
     background: #fff;
     color: #000;
     text-decoration: none;
     font-weight: 600;
+    font-size: 1.05rem;
     border-radius: 50px;
     transition: all 0.3s ease;
 }
 
 .connect-button:hover {
-    background: #ff3377;
+    background: #EF233C;
     color: #fff;
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(255, 0, 84, 0.3);
+    box-shadow: 0 10px 30px rgba(239, 35, 60, 0.4);
 }
 
 .connect-link {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
+    font-size: 1.05rem;
     transition: color 0.3s ease;
 }
 
 .connect-link:hover {
-    color: #ff3377;
+    color: #EF233C;
 }
 
 /* Image Side */
 .connect-image-side {
     position: relative;
-    height: 100%;
-    min-height: 500px;
+    width: 100%;
 }
 
 .coffee-img {
@@ -2475,25 +3334,19 @@ nav.scrolled .navigation-menu li a.nav-active {
     display: block;
     object-fit: cover;
     border-radius: 12px;
-    
-    /* Pushes clarity to 85% of the image; blur only happens at the very edges */
     mask-image: radial-gradient(circle, black 85%, transparent 100%);
     -webkit-mask-image: radial-gradient(circle, black 85%, transparent 100%);
-    
-    /* Ensures no browser-level smoothing makes it look fuzzy */
     image-rendering: -webkit-optimize-contrast; 
-    filter: brightness(1.05); /* Slight boost to make it look crisp */
+    filter: brightness(1.05);
     transition: transform 0.8s ease;
 }
 
-/* Removed the inset box-shadow to prevent the "blurry film" look */
 .image-overlay-glow {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    /* Instead of blur, we add a very subtle high-end corporate border */
     border: 1px solid rgba(255, 255, 255, 0.1);
     pointer-events: none;
     border-radius: 12px;
@@ -2503,21 +3356,15 @@ nav.scrolled .navigation-menu li a.nav-active {
 @media (max-width: 1024px) {
     .connect-content {
         grid-template-columns: 1fr;
+        gap: 3rem;
     }
     
     .connect-text-side {
-        padding: 4rem 2rem;
         order: 2;
     }
     
     .connect-image-side {
         order: 1;
-        min-height: 350px;
-    }
-    
-    .image-overlay-glow {
-        background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
-        box-shadow: inset 0 -100px 150px -50px #000;
     }
 
     .connect-actions {
@@ -2525,25 +3372,304 @@ nav.scrolled .navigation-menu li a.nav-active {
         align-items: flex-start;
         gap: 1.5rem;
     }
+    
+    .connect-header {
+        margin-bottom: 3rem;
+    }
 }
 
+@media (max-width: 768px) {
+    .connect-main-title {
+        font-size: 2.5rem;
+    }
+    
+    .connect-title {
+        font-size: 2rem;
+    }
+    
+    .connect-button {
+        padding: 1.2rem 2.5rem;
+        font-size: 1rem;
+    }
+}
+.section-subtitle {
+    font-size: 1.75rem;
+    color: #EF233C;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+}
 
+.action-paragraph {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 1.5rem;
+}
+
+.play-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    padding: 8% 0;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(239,35,60,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(239,35,60,0.05) 0%, transparent 50%);
+}
+
+.testimonials-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4%;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonials-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.testimonials-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    color: #222;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.testimonials-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: #666;
+    font-weight: 300;
+}
+
+.testimonials-carousel-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonials-carousel {
+    overflow: hidden;
+    border-radius: 24px;
+}
+
+.testimonials-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 2rem;
+}
+
+.testimonial-card {
+    min-width: 100%;
+    flex-shrink: 0;
+}
+
+.card-inner {
+    background: #EF233C;
+    border-radius: 20px;
+    padding: 4rem 3rem 3rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    position: relative;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+.quote-mark {
+    position: absolute;
+    top: -20px;
+    left: 3rem;
+    font-size: 8rem;
+    font-family: Georgia, serif;
+    color: #fff;
+    opacity: 0.2;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.testimonial-text {
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    line-height: 1.8;
+    color: #fff;
+    margin-bottom: auto;
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+}
+
+.testimonial-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 3px solid rgba(255,255,255,0.3);
+}
+
+.author-details {
+    flex: 1;
+}
+
+.author-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.4rem;
+}
+
+.author-title {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.9);
+    font-weight: 400;
+}
+
+.rating {
+    font-size: 1.5rem;
+    color: #FFD700;
+    letter-spacing: 2px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #EF233C;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255,107,157,0.3);
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: #EF233C;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 30px rgba(255,107,157,0.5);
+}
+
+.carousel-btn svg {
+    color: #fff;
+}
+
+.prev-btn {
+    left: -30px;
+}
+
+.next-btn {
+    right: -30px;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 3rem;
+}
+
+.carousel-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,107,157,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dots .dot.active {
+    background: #EF233C;
+    width: 40px;
+    border-radius: 6px;
+}
+
+.carousel-dots .dot:hover {
+    background: rgba(255,107,157,0.6);
+}
+
+@media (max-width: 768px) {
+    .testimonials-section {
+        padding: 15% 0;
+    }
+    
+    .card-inner {
+        padding: 3rem 2rem 2rem;
+        min-height: 280px;
+    }
+    
+    .quote-mark {
+        font-size: 6rem;
+        left: 2rem;
+    }
+    
+    .carousel-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .prev-btn {
+        left: 10px;
+    }
+    
+    .next-btn {
+        right: 10px;
+    }
+    
+    .testimonial-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
     </style>
 </head>
 <body>
- <!-- Updated Navigation HTML -->
 <nav class="primary-navigation">
   <div class="navigation-wrapper">
     <a href="#" class="brand-logo">Maria</a>
+
+    <!-- Hamburger / Close Button -->
+    <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
     <ul class="navigation-menu">
         <li><a href="#landing" class="nav-active">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#differentiator">Approach</a></li> <li><a href="#expertise-focus">Expertise</a></li>
-       <li><a href="#featured-work">Work</a></li>
-        <li><a href="#contact">Engagement</a></li> <li><a href="#contact">Contact</a></li>
+        <li><a href="#differentiator">Approach</a></li>
+        <li><a href="#expertise-focus">Expertise</a></li>
+        <li><a href="#featured-work">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
     </ul>
-</div>
+  </div>
 </nav>
+
+
 
 <!-- Updated Hero Section HTML -->
 <section class="landing-showcase" id="landing" style="background-color: black;">
@@ -2574,82 +3700,96 @@ nav.scrolled .navigation-menu li a.nav-active {
 </section>
    
 </section>
-
-<!-- About Me Section HTML -->
 <section class="profile-section" id="about">
+
+    <!-- SECTION HEADER -->
+    <div class="sector-header reveal">
+        <h2 class="sector-title" style="color: #EF233C;">About Me</h2>
+    </div>
+
+    <!-- MAIN CONTENT -->
     <div class="profile-container">
+
+        <!-- IMAGE -->
         <div class="profile-visual">
             <div class="visual-frame">
-                <div class="frame-glow"></div>
                 <img src="lacuna.jpg" alt="Maria Luisa de la Puerta Fernandez - Scientific Communicator & Data Analyst">
                 <div class="frame-accent"></div>
             </div>
         </div>
-        
+
+        <!-- TEXT -->
         <div class="profile-narrative">
-            <div class="narrative-label">
-                <span class="label-line"></span>
-                <span class="label-text">ABOUT ME</span>
-            </div>
-            
+
             <h2 class="narrative-title">
                 Scientific Communicator<br>
                 <span class="title-highlight">& Data Analyst</span>
             </h2>
-            
+
             <div class="narrative-content">
                 <p class="narrative-intro">
-                    I graduated in biotechnology, later specialised in agriculture and livestock production, and I am currently completing a PhD in agriculture. Despite having a strong technical background, my work has never been driven by technical considerations alone. 
+                    I graduated in biotechnology, later specialised in agriculture and livestock production, and I am currently completing a PhD in agriculture. Despite having a strong technical background, my work has never been driven by technical considerations alone.
                 </p>
-                
+
                 <p class="narrative-body">
                     Early in my career, particularly through my work in Sub-Saharan Africa, my understanding of science, communication and project management shifted profoundly. I learned that even the most robust technical solutions — and the most accurate data — do not create change unless they are <strong>culturally relevant and grounded in context, language and lived experience.</strong>
                 </p>
-                
+
                 <p class="narrative-body">
                     I listen first, learn deeply, and only then build tools, narratives and solutions that respect the people and environments they are meant to serve. Language is central to this approach: I work professionally across <strong>Spanish, English, Italian, Portuguese, French and German</strong>, with additional experience communicating in other languages in field and intercultural settings.
                 </p>
-                
+
                 <p class="narrative-emphasis">
                     Whether working with communities in remote regions, speaking at international forums, or collaborating with policymakers and practitioners, I bring not only technical expertise, but a genuinely people-centred lens shaped by years of cross-cultural engagement.
                 </p>
             </div>
-            
-            <div class="narrative-stats">
-    <div class="stat-item">
-        <span class="stat-number">10+</span>
-        <span class="stat-label">Years Experience</span>
-    </div>
-    
-    <div class="stat-divider"></div>
-    
-    <div class="stat-item">
-        <span class="stat-number">6+</span>
-        <span class="stat-label">Languages</span>
-    </div>
-    
-    <div class="stat-divider"></div>
-    
-    <div class="stat-item">
-        <span class="stat-number">4</span>
-        <span class="stat-label">Continents</span>
-    </div>
-</div>
+
         </div>
     </div>
+
+    <!-- STATS / WRAP-UP -->
+    <div class="narrative-stats section-stats">
+        <div class="stat-item">
+            <span class="stat-number">6+</span>
+            <span class="stat-label">Languages</span>
+        </div>
+
+        <div class="stat-divider"></div>
+
+        <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Years Experience</span>
+        </div>
+
+        <div class="stat-divider"></div>
+
+        <div class="stat-item">
+            <span class="stat-number">4</span>
+            <span class="stat-label">Continents</span>
+        </div>
+
+        <div class="stat-divider"></div>
+
+        <div class="stat-item">
+            <span class="stat-number">20+</span>
+            <span class="stat-label">Projects</span>
+        </div>
+    </div>
+
 </section>
-<section class="distinction-showcase" id="differentiator" style="margin-top: -120px;">
+
+
+<section class="distinction-showcase" id="differentiator" style="margin-top: -12rem;">
+
     <div class="distinction-wrapper">
         <div class="distinction-intro">
-            <div class="intro-badge">
+            <!-- <div class="intro-badge">
                 <span class="badge-label">DIFFERENTIATOR</span>
-            </div>
-            <h2 class="distinction-headline">
+            </div> -->
+            <h2 class="distinction-headline" style="margin-top: 50px;">
                 The Value <span class="headline-emphasis">I Bring</span>
             </h2>
-            <p class="distinction-tagline">
-                Where technical excellence meets cultural intelligence — delivering global impact that goes beyond the data.
-            </p>
+        
         </div>
         
         <div class="distinction-matrix">
@@ -2665,9 +3805,9 @@ nav.scrolled .navigation-menu li a.nav-active {
                         </svg>
                     </div>
                 </div>
-                <h3 class="card-title">People-Centred Science</h3>
+                <h3 class="card-title">People-centred design</h3>
                 <p class="card-description">
-                    Technical excellence meets cultural relevance—solutions that respect local contexts, languages, and lived experiences for lasting impact.
+                    Through consultations and participatory workshops with farmers, practitioners, and local stakeholders, I ensure that data, tools, and communication outputs reflect real needs and can be used beyond the project lifecycle.
                 </p>
             </div>
             
@@ -2682,9 +3822,9 @@ nav.scrolled .navigation-menu li a.nav-active {
                         </svg>
                     </div>
                 </div>
-                <h3 class="card-title">360° Global Perspective</h3>
+                <h3 class="card-title">Global perspective, local context</h3>
                 <p class="card-description">
-                    Spanning 4 continents and 6+ languages, delivering truly contextualized work that bridges the gap between global strategy and local reality.
+                    My intercultural and multilingual experience supports effective collaboration in technical environments, helping align data, analysis, and communication with both international requirements and local realities.
                 </p>
             </div>
             
@@ -2697,9 +3837,9 @@ nav.scrolled .navigation-menu li a.nav-active {
                         </svg>
                     </div>
                 </div>
-                <h3 class="card-title">From Data to Action</h3>
+                <h3 class="card-title">From data to use</h3>
                 <p class="card-description">
-                    Advanced analytics combined with compelling communication—turning complex data into tools, narratives, and campaigns that drive real change.
+                    I combine data analysis with clear communication to turn complex evidence into practical tools, narratives, and materials that support decisions, learning, and accountability.
                 </p>
             </div>
             
@@ -2714,9 +3854,9 @@ nav.scrolled .navigation-menu li a.nav-active {
                         </svg>
                     </div>
                 </div>
-                <h3 class="card-title">Interdisciplinary Integration</h3>
+                <h3 class="card-title">Systems-based project work</h3>
                 <p class="card-description">
-                    Bridging climate, agriculture, health, and energy through One Health and systems thinking for holistic, sustainable outcomes.
+                    My work contributes to projects that link climate, food systems, livestock, health, and energy through applied systems and One Health approaches, grounded in field engagement and delivery experience.
                 </p>
             </div>
         </div>
@@ -2726,20 +3866,26 @@ nav.scrolled .navigation-menu li a.nav-active {
     <div class="action-backdrop"></div>
     
     <div class="action-wrapper">
+        <!-- Headline -->
         <div class="action-intro reveal">
-            <h2 class="action-headline">
-                Transforming Data<br>
-                <span class="headline-emphasis">into Action</span>
+            <h2 class="action-headline" style="margin-top: 100px; text-align: justify; text-justify: inter-word;">
+                Putting <span class="headline-emphasis">Data to Use</span>
             </h2>
-            <p class="action-tagline">
-                Bridging complex information with clear, impactful communication across environmental, agricultural, and health sectors.
-            </p>
         </div>
 
+        <!-- Data informs -->
         <div class="action-grid reveal">
             <div class="action-text-content">
-                <p class="action-paragraph">I work with governments, international organisations and companies to transform environmental, agricultural and health data into tools people actually use. Through advanced data analytics, I structure, analyse and visualise complex information so that what matters is clear, comparable and actionable.</p>
-                <p class="action-paragraph">I design dashboards, analytical frameworks, fact sheets and reporting tools that support monitoring, compliance, investment decisions and sustainability strategies.</p>
+                <h3 class="section-subtitle" style="text-align: justify; text-justify: inter-word;">Data informs</h3>
+                <p class="action-paragraph" style="text-align: justify; text-justify: inter-word;">
+                    I work with governments, international organisations, and companies to analyse environmental, agricultural, and health data and turn it into tools that are actually used. 
+                </p>
+                <p class="action-paragraph" style="text-align: justify; text-justify: inter-word;">
+                    Through data analytics, I structure, analyse, and visualise complex information so that priorities are clear, comparable, and usable for decision-making, reporting, and accountability.
+                </p>
+                <p class="action-paragraph" style="text-align: justify; text-justify: inter-word;">
+                    This includes the design of dashboards, analytical frameworks, fact sheets, and reporting tools that support monitoring, compliance, investment decisions, and sustainability strategies.
+                </p>
             </div>
             <div class="action-visual-card">
                 <img src="https://pub.mdpi-res.com/information/information-14-00614/article_deploy/html/images/information-14-00614-g008.png?1700041481" alt="Integrated performance dashboard visualization">
@@ -2747,57 +3893,97 @@ nav.scrolled .navigation-menu li a.nav-active {
             </div>
         </div>
 
-        <div class="communication-statement reveal">
-            <h3 class="statement-title">If data informs, great communication <span class="headline-emphasis">moves</span>.</h3>
-            <div class="play-button-container">
-                <button class="play-button">
-                    <span class="play-icon">▶</span>
-                    Watch Video
-                </button>
-            </div>
-        </div>
-
+        <!-- Communication enables use -->
         <div class="action-grid reverse reveal">
             <div class="action-text-content">
-                <p class="action-paragraph">I use evidence to shape narratives, challenge assumptions and inspire action. I design communication products and campaigns that speak to their audience, whether that is a boardroom, a policy team or a remote rural community.</p>
-                <p class="action-paragraph">With over ten years of experience across Africa and Europe, I bring a global perspective and deep sectoral knowledge — a genuine 360° view that goes well beyond the buzzword.</p>
+                <h3 class="section-subtitle" style="text-align: justify; text-justify: inter-word;">Communication enables use</h3>
+                <p class="action-paragraph" style="text-align: justify; text-justify: inter-word;">
+                    Alongside analytical work, I design communication outputs that help people understand and engage with technical evidence. This includes short videos, visual explainers, brochures, campaigns, and written content developed from the same data and analysis.
+                </p>
+                <p class="action-paragraph" style="text-align: justify; text-justify: inter-word;">
+                    Communication work focuses on clarity, accuracy, and audience fit. Materials are adapted for different contexts, whether for policy teams, technical partners, decision-makers, or community-level initiatives, without oversimplifying the underlying evidence.
+                </p>
             </div>
+
+            <!-- VIDEO REPLACES IMAGE -->
             <div class="action-visual-card">
-                <img src="https://static.vecteezy.com/system/resources/previews/028/045/044/non_2x/business-data-visualization-process-chart-diagram-with-steps-esg-icon-concept-of-business-trend-environmental-social-and-governance-in-sustainable-and-ethical-business-vector.jpg" alt="ESG and sustainability data visualization">
-                <div class="card-glow"></div>
+                <iframe 
+    width="100%" 
+    height="315"
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+    title="Test Video"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="border-radius: 12px;">
+</iframe>
             </div>
         </div>
 
+<!-- Final Quote -->
         <div class="intro-quote-section reveal">
-            <blockquote class="main-quote">
-                Data does not change the world.<br>
+            <blockquote class="main-quote" style="text-align: justify; text-justify: inter-word;">
+                Data alone does not create change.<br>
                 <strong>People do.</strong>
             </blockquote>
         </div>
+
+    <div class="video-slider-section">
+    <div class="video-slider">
+        <button class="slider-btn prev">‹</button>
+        <div class="videos-wrapper">
+            <div class="videos-track">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/C-esqfpg4ig" allowfullscreen></iframe>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/t6mHYdi7F3s" allowfullscreen></iframe>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/qh1JiBl_790" allowfullscreen></iframe>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/npW88xOmPVI" allowfullscreen></iframe>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/b4RAREzVWp8" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <button class="slider-btn next">›</button>
+    </div>
+</div>
     </div>
 </section>
- <section class="sector-expertise" id="expertise-focus">
-    <div class="sector-wrapper">
-        <div class="sector-header reveal">
-            <div class="sector-badge">
-                <span class="sector-badge-dot"></span>
-                <span class="sector-badge-text">Core Competencies</span>
-            </div>
-            <h2 class="sector-title">Areas of <span class="headline-emphasis">Expertise</span></h2>
-            <p class="sector-subtitle">Deep sectoral knowledge across critical global challenges, bridging the gap between high-level data and ground-level implementation.</p>
-        </div>
 
+<section class="sector-expertise" id="expertise-focus" >
+    <div class="sector-wrapper">
+        <div class="sector-header reveal" >
+      
+            <h2 class="sector-title" style="margin-top: -12rem;">Areas of <span class="headline-emphasis">Expertise</span></h2>
+               <p class="distinction-tagline">
+                I work at the point where research, data, and real-world decision-making meet. I support research teams, NGOs, and public institutions working in climate, agriculture, food systems, and health by turning technical work into clear outputs that can be used for decisions, funding, and implementation.
+            </p>
+        </div>
         <div class="sector-grid">
             <div class="sector-card reveal">
-                <div class="sector-card-top">
-                    <span class="sector-number">01</span>
-                    <div class="sector-icon-box">
-                        <svg class="expertise-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
-                            <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z"></path>
-                            <path d="M12 12L9 21"></path>
-                        </svg>
-                    </div>
+                <div class="sector-icon-box-center">
+                    <!-- Agri-Tech: Cloud rain over plants growing -->
+                    <svg class="expertise-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <!-- Cloud -->
+                        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" stroke-linejoin="round"/>
+                        <!-- Rain drops (dashed) -->
+                        <line x1="8" y1="19" x2="8" y2="21" stroke-linecap="round" stroke-dasharray="0.5 1.5"/>
+                        <line x1="12" y1="19" x2="12" y2="21" stroke-linecap="round" stroke-dasharray="0.5 1.5"/>
+                        <line x1="16" y1="19" x2="16" y2="21" stroke-linecap="round" stroke-dasharray="0.5 1.5"/>
+                        <!-- Plants growing from soil -->
+                        <path d="M3 22h18" stroke-linecap="round"/>
+                        <path d="M6 22v-4c0-1 .5-2 2-2" stroke-linecap="round"/>
+                        <path d="M10 22v-4c0-1 .5-2 2-2" stroke-linecap="round"/>
+                        <!-- Leaves -->
+                        <path d="M6 16c-1-1-1-2 0-3s2-1 3 0" fill="none" stroke-linejoin="round"/>
+                        <path d="M10 16c-1-1-1-2 0-3s2-1 3 0" fill="none" stroke-linejoin="round"/>
+                    </svg>
                 </div>
                 <h3 class="sector-name">Resilient Agri-Climate Systems</h3>
                 <ul class="sector-list">
@@ -2809,17 +3995,25 @@ nav.scrolled .navigation-menu li a.nav-active {
             </div>
 
             <div class="sector-card reveal">
-                <div class="sector-card-top">
-                    <span class="sector-number">02</span>
-                    <div class="sector-icon-box">
-                        <svg class="expertise-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-                        </svg>
-                    </div>
+                <div class="sector-icon-box-center">
+                    <!-- Bioenergy: Light bulb with leaf inside -->
+                    <svg class="expertise-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <!-- Bulb outline -->
+                        <path d="M9 18h6" stroke-linecap="round"/>
+                        <path d="M10 21h4" stroke-linecap="round"/>
+                        <path d="M12 3v1" stroke-linecap="round"/>
+                        <path d="M19 12h1" stroke-linecap="round"/>
+                        <path d="M4 12h1" stroke-linecap="round"/>
+                        <!-- Main bulb shape -->
+                        <path d="M16.5 7.5A5 5 0 0 0 12 3a5 5 0 0 0-4.5 4.5c0 2.5 1.5 4.5 2.5 5.5v2h4v-2c1-1 2.5-3 2.5-5.5z" stroke-linejoin="round"/>
+                        <!-- Leaf inside bulb -->
+                        <path d="M12 7c-1.5 0-2 1.5-2 3 0 0 1-1 2-1s2 1 2 1c0-1.5-.5-3-2-3z" fill="currentColor" opacity="0.3"/>
+                        <path d="M12 7v5" stroke-linecap="round" stroke-width="1"/>
+                    </svg>
                 </div>
                 <h3 class="sector-name">Renewable Energy Systems</h3>
                 <ul class="sector-list">
-                    <li>Renewable energy uptake and market positioning</li>
+                    <li style="margin-left: -2px;">Renewable energy uptake and market positioning</li>
                     <li>Bioenergy systems and resource trade-offs</li>
                     <li>Community engagement and local resource use</li>
                 </ul>
@@ -2827,13 +4021,25 @@ nav.scrolled .navigation-menu li a.nav-active {
             </div>
 
             <div class="sector-card reveal">
-                <div class="sector-card-top">
-                    <span class="sector-number">03</span>
-                    <div class="sector-icon-box">
-                        <svg class="expertise-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                        </svg>
-                    </div>
+                <div class="sector-icon-box-center">
+                    <!-- Healthy Planet: Hands holding Earth with plant -->
+                    <svg class="expertise-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <!-- Earth/Globe -->
+                        <circle cx="12" cy="10" r="6"/>
+                        <!-- Continents (simplified) -->
+                        <path d="M8 8c1 0 1.5.5 2 1s1 1 2 1" stroke-linecap="round"/>
+                        <path d="M14 11c.5-.5 1-1 1-1.5" stroke-linecap="round"/>
+                        <!-- Plant/Sprout on top of Earth -->
+                        <path d="M12 4v3" stroke-linecap="round"/>
+                        <path d="M11 5c-.5-.5-1-.5-1.5 0" stroke-linecap="round"/>
+                        <path d="M13 5c.5-.5 1-.5 1.5 0" stroke-linecap="round"/>
+                        <!-- Hands cradling from below -->
+                        <path d="M6 16c0-1 1-2 2-2h1" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18 16c0-1-1-2-2-2h-1" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 16v3c0 1 .5 2 1.5 2" stroke-linecap="round"/>
+                        <path d="M18 16v3c0 1-.5 2-1.5 2" stroke-linecap="round"/>
+                        <path d="M8 20h8" stroke-linecap="round"/>
+                    </svg>
                 </div>
                 <h3 class="sector-name">One Health Integration</h3>
                 <ul class="sector-list">
@@ -2847,271 +4053,478 @@ nav.scrolled .navigation-menu li a.nav-active {
     </div>
     <div class="sector-bg-glow"></div>
 </section>
- <section class="impact-section" id="featured-work" >
-    <div class="impact-wrapper">
-        
-        <div class="impact-header reveal">
-            <div class="impact-badge">
-                <span class="impact-dot"></span>
-                <span class="impact-label">PORTFOLIO</span>
+<div class="featured-projects" id="featured-work" style="margin-top: -12rem;">
+    <div class="container">
+        <h2 class="project-title" style="margin-top: 100px;">Featured Projects</h2>
+
+        <div class="projects-list">
+
+            <!-- Project 1 -->
+            <div class="project1">
+                <img src="./project being presented.jpg" alt="Early warning systems in dryland communities">
+                <div class="text-container">
+                    <h3>Early Warning Systems in Dryland Communities</h3>
+                    <p>
+                        Research on how climate and food security early warnings are communicated,
+                        interpreted, and used by pastoralist communities in the Horn of Africa.
+                    </p>
+                    <button class="read-more-btn" onclick="showProjectModal('project1')">
+                        Read More
+                    </button>
+                </div>
             </div>
-            <h2 class="impact-headline">Featured <span class="headline-emphasis">Projects</span></h2>
-            <p class="impact-subheadline">Evidence-based impact across sectors and continents, optimized for clarity and scale.</p>
+
+            <!-- Project 2 -->
+            <div class="project1">
+                <img src="./Avian Influenza ICT.png" alt="Avian influenza awareness Nigeria">
+                <div class="text-container">
+                    <h3>ICT-Enabled Avian Influenza Awareness (Nigeria)</h3>
+                    <p>
+                        Baseline and feasibility assessment for an ICT-based solution to improve
+                        avian influenza awareness and biosecurity among smallholder poultry farmers.
+                    </p>
+                    <button class="read-more-btn" onclick="showProjectModal('project2')">
+                        Read More
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project1">
+                <img src="./Lacuna Dataset.jpg" alt="Namibia rangeland dataset project">
+                <div class="text-container">
+                    <h3>Namibia Rangeland & Pasture Dataset</h3>
+                    <p>
+                        Development of an open-access dataset integrating field data,
+                        stakeholder input, and applied analysis for sustainable rangeland management.
+                    </p>
+                    <button class="read-more-btn" onclick="showProjectModal('project3')">
+                        Read More
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project1">
+                <img src="./image2.jpg" alt="Encroacher bush value chains Namibia">
+                <div class="text-container">
+                    <h3>Encroacher Bush Value Chains (RUFORUM)</h3>
+                    <p>
+                        Climate-resilient agriculture project exploring how bush encroachment
+                        can be transformed into sustainable economic value chains in Namibia.
+                    </p>
+                    <button class="read-more-btn" onclick="showProjectModal('project4')">
+                        Read More
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project1">
+                <img src="./image4.png" alt="Civil society advocacy Namibia">
+                <div class="text-container">
+                    <h3>Civil Society Advocacy & Green Economy</h3>
+                    <p>
+                        Development of evidence-based advocacy training materials supporting
+                        civil society engagement in extractive industries and the green economy.
+                    </p>
+                    <button class="read-more-btn" onclick="showProjectModal('project5')">
+                        Read More
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project1">
+                <img src="./image3.jpg" alt="National Adaptation Plan communications Namibia">
+                <div class="text-container">
+                    <h3>National Adaptation Plan Communications (Namibia)</h3>
+                    <p>
+                        Strategic communications and outreach supporting inclusive stakeholder
+                        engagement in Namibia's National Adaptation Plan process.
+                    </p>
+                    <button class="read-more-btn" onclick="showProjectModal('project6')">
+                        Read More
+                    </button>
+                </div>
+            </div>
+
         </div>
+    </div>
+</div>
 
-        <div class="impact-grid">
-            <div class="impact-card reveal">
-                <div class="impact-image-box">
-                    <img src="https://www.adaptation-undp.org/sites/default/files/project/niger_1_of_1-6.jpg" alt="Community climate resilience project">
-                    <div class="impact-overlay">
-                        <span class="impact-num">01</span>
-                    </div>
-                </div>
-                <div class="impact-content">
-                    <h3 class="impact-title">Community-Based Early Warning Systems</h3>
-                    <p class="impact-desc">Integrating climate data with indigenous knowledge to support local resilience decision-making.</p>
-                </div>
-            </div>
-
-            <div class="impact-card reveal">
-                <div class="impact-image-box">
-                    <img src="https://smartwatermagazine.com/sites/default/files/styles/thumbnail-830x455/public/zambia-water-award.jpg?itok=xt-kDhfB" alt="Rangeland monitoring in Africa">
-                    <div class="impact-overlay">
-                        <span class="impact-num">02</span>
-                    </div>
-                </div>
-                <div class="impact-content">
-                    <h3 class="impact-title">Lacuna Rangeland Monitoring</h3>
-                    <p class="impact-desc">Ground-truthed environmental data collection for near real-time satellite calibration.</p>
-                </div>
-            </div>
-
-            <div class="impact-card reveal">
-                <div class="impact-image-box">
-                    <img src="https://www.adaptationcommunity.net/wp-content/uploads/2022/10/COP-27resilience-hub-1536x864-1-1024x576.jpg" alt="Climate policy forum">
-                    <div class="impact-overlay">
-                        <span class="impact-num">03</span>
-                    </div>
-                </div>
-                <div class="impact-content">
-                    <h3 class="impact-title">Climate Policy Communications</h3>
-                    <p class="impact-desc">Evidence-based campaigns supporting policy uptake and global stakeholder engagement.</p>
-                </div>
-            </div>
-
-            <div class="impact-card reveal">
-                <div class="impact-image-box">
-                    <img src="https://s7d1.scene7.com/is/image/wbcollab/E2E-800x534?qlt=90&fmt=webp" alt="Women in renewable energy Africa">
-                    <div class="impact-overlay">
-                        <span class="impact-num">04</span>
-                    </div>
-                </div>
-                <div class="impact-content">
-                    <h3 class="impact-title">Renewable Energy Engagement</h3>
-                    <p class="impact-desc">Market strategies for clean energy adoption grounded in local user needs.</p>
-                </div>
-            </div>
-
-            <div class="impact-card reveal">
-                <div class="impact-image-box">
-                    <img src="https://www.3blmedia.com/sites/default/files/styles/carousel_2x/public/images/1R5A4260.jpg" alt="Climate-smart agriculture community">
-                    <div class="impact-overlay">
-                        <span class="impact-num">05</span>
-                    </div>
-                </div>
-                <div class="impact-content">
-                    <h3 class="impact-title">Food Systems (RUFORUM)</h3>
-                    <p class="impact-desc">Multi-format digital campaigns focused on resilient capacity building.</p>
-                </div>
-            </div>
-
-            <div class="impact-card reveal">
-                <div class="impact-image-box">
-                    <img src="https://www.woah.org/app/uploads/cache/2023/05/one-health-capacity-building-woah-1/1818398200.jpg" alt="One Health workshop">
-                    <div class="impact-overlay">
-                        <span class="impact-num">06</span>
-                    </div>
-                </div>
-                <div class="impact-content">
-                    <h3 class="impact-title">Avian Influenza Surveillance</h3>
-                    <p class="impact-desc">Field data collection across the animal–human–environment interface.</p>
-                </div>
+<!-- Modal -->
+<!-- Project Modal -->
+<div id="projectModal" class="project-modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeProjectModal()">&times;</span>
+        <div class="modal-body">
+            <img id="modalImage" src="" alt="Project Image">
+            <div class="modal-text" id="modalText">
             </div>
         </div>
     </div>
-</section>
+</div>
 
    <section class="conferences-section" id="conferences">
     <div class="conferences-container">
-        <div class="conferences-header reveal">
-            <h2 class="section-title">Conferences, Courses & Workshops</h2>
-        </div>
+    <div class="conferences-header reveal">
+        <h2 class="section-title" style="color: #EF233C; margin-top: -12rem;">Conferences, Courses & Workshops</h2>
+    </div>
 
-        <!-- Smooth auto-scrolling horizontal gallery -->
-        <div class="gallery-wrapper">
-            <div class="gallery-track">
-                <!-- Items repeated for seamless infinite loop -->
-                <div class="conference-card reveal">
-                    <img src="https://carpha.org/Portals/0/xBlog/uploads/2024/11/19/oneHealthWorkshop.jpg" alt="One Health Stakeholder Workshop">
-                    <div class="conference-overlay">
-                        <h3>One Health Stakeholder Workshop</h3>
-                        <p>Engaging discussions on integrated health approaches</p>
-                    </div>
+    <div class="gallery-wrapper">
+        <div class="gallery-track">
+            
+            <!-- Two-Day Seminar on Animal Nutrition & Precision Farming -->
+            <div class="conference-card reveal">
+                <span class="language-flag" title="English">🇬🇧</span>
+                <img src="./Bolonga.jpg" alt="Two-Day Seminar on Animal Nutrition & Precision Farming">
+                <div class="conference-overlay">
+                    <h3>Two-Day Seminar on Animal Nutrition & Precision Farming</h3>
+                    <p>Led a two-day seminar at the Department of Livestock Production, combining animal nutrition in Sub-Saharan Africa with hands-on applications for precision farming students.</p>
                 </div>
-
-                <div class="conference-card reveal">
-                    <img src="https://i.ex-cdn.com/nongnghiepmoitruong.vn/files/content/2024/10/16/ilri-cam-ket-dong-gop-cho-mot-suc-khoe-bang-cac-nghien-cuu-khoa-hoc-092539_50-094721-110810.jpg" alt="One Health Conference">
-                    <div class="conference-overlay">
-                        <h3>One Health Conference</h3>
-                        <p>Global experts sharing latest research</p>
-                    </div>
-                </div>
-
-                <div class="conference-card reveal">
-                    <img src="https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=985789030258804" alt="Food Security Outreach">
-                    <div class="conference-overlay">
-                        <h3>Zimbabwe School Food Security Outreach</h3>
-                        <p>Community training on sustainable practices</p>
-                    </div>
-                </div>
-
-                <div class="conference-card reveal">
-                    <img src="https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1191885906308270" alt="Renewable Energy Forum">
-                    <div class="conference-overlay">
-                        <h3>Spain–Africa Renewable Energy Conferences</h3>
-                        <p>Bridging continents for green energy</p>
-                    </div>
-                </div>
-
-                <div class="conference-card reveal">
-                    <img src="https://www.who.int/images/default-source/searo---images/health-topics/one-health/integrating-one-health-approach-to-surveillance-dhaka_2.jpg?sfvrsn=b3bad1b_2" alt="One Health Dialogues">
-                    <div class="conference-overlay">
-                        <h3>One Health Dialogues & Panels</h3>
-                        <p>Interactive sessions on health integration</p>
-                    </div>
-                </div>
-
-                <div class="conference-card reveal">
-                    <img src="https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1196305715827419" alt="Climate-Smart Agriculture Workshop">
-                    <div class="conference-overlay">
-                        <h3>Climate & One Health Forums</h3>
-                        <p>Workshops on resilient systems</p>
-                    </div>
-                </div>
-
-                <div class="conference-card reveal">
-                    <img src="https://www.ivi.int/wp-content/uploads/2024/07/2024-Hands-On-Training_IVI-scaled.jpg" alt="Technical Courses">
-                    <div class="conference-overlay">
-                        <h3>Technical Courses Delivered</h3>
-                        <p>Hands-on training in data and communication</p>
-                    </div>
-                </div>
-
-                <div class="conference-card reveal">
-                    <img src="https://hsph.harvard.edu/wp-content/uploads/2024/04/Hackathon-Nour-Sharara-and-Caroline-Bulstra_1200x800.jpg" alt="Data Science Hackathons">
-                    <div class="conference-overlay">
-                        <h3>Data Science Hackathons</h3>
-                        <p>Innovative solutions for global challenges</p>
-                    </div>
-                </div>
-
-                <!-- Repeat for seamless loop -->
-                <div class="conference-card reveal">
-                    <img src="https://carpha.org/Portals/0/xBlog/uploads/2024/11/19/oneHealthWorkshop.jpg" alt="One Health Stakeholder Workshop">
-                    <div class="conference-overlay">
-                        <h3>One Health Stakeholder Workshop</h3>
-                        <p>Engaging discussions on integrated health approaches</p>
-                    </div>
-                </div>
-
-                <div class="conference-card reveal">
-                    <img src="https://i.ex-cdn.com/nongnghiepmoitruong.vn/files/content/2024/10/16/ilri-cam-ket-dong-gop-cho-mot-suc-khoe-bang-cac-nghien-cuu-khoa-hoc-092539_50-094721-110810.jpg" alt="One Health Conference">
-                    <div class="conference-overlay">
-                        <h3>One Health Conference</h3>
-                        <p>Global experts sharing latest research</p>
-                    </div>
-                </div>
-
-                <!-- Add more repeats if needed for longer seamless effect -->
             </div>
+
+            <!-- Spain–Namibia 1st Climate Forum -->
+            <div class="conference-card reveal">
+                <span class="language-flag" title="English">🇬🇧</span>
+                <img src="./IMG_4265 (2).jpg" alt="Spain–Namibia 1st Climate Forum">
+                <div class="conference-overlay">
+                    <h3>Spain–Namibia 1st Climate Forum</h3>
+                    <p>Inaugural forum bringing together Spanish and Namibian stakeholders to exchange knowledge on climate action, data-driven decision-making, and resilience strategies.</p>
+                </div>
+            </div>
+
+            <!-- Osaka Africa Business Forum -->
+            <div class="conference-card reveal">
+                <span class="language-flag" title="English">🇬🇧</span>
+                <img src="./maria osaka.jpg" alt="Osaka Africa Business Forum">
+                <div class="conference-overlay">
+                    <h3>Osaka Africa Business Forum</h3>
+                    <p>Participation in high-level discussions on sustainable investment, entrepreneurship, and Africa–Japan collaboration, representing Omeva Consulting.</p>
+                </div>
+            </div>
+
+            <!-- Spain–Zimbabwe One Health Dialogue -->
+            <div class="conference-card reveal">
+                <span class="language-flag" title="English">🇬🇧</span>
+                <img src="./Copy of IMG-20251124-WA0116.jpg" alt="Spain–Zimbabwe One Health Dialogue">
+                <div class="conference-overlay">
+                    <h3>Spain–Zimbabwe One Health Dialogue</h3>
+                    <p>Organised and moderated expert panel discussions addressing zoonotic disease, food systems, and environmental health through a One Health approach.</p>
+                </div>
+            </div>
+
+            <!-- Spain–Zimbabwe School Outreach: Food Science -->
+            <div class="conference-card reveal">
+                <span class="language-flag" title="English">🇬🇧</span>
+                <img src="./IMG-20251121-WA0036.jpg" alt="Spain–Zimbabwe School Outreach: Food Science">
+                <div class="conference-overlay">
+                    <h3>Spain–Zimbabwe School Outreach: Food Science</h3>
+                    <p>Organised a school outreach workshop featuring hands-on demonstrations in food preservation, nutrition, and waste reduction.</p>
+                </div>
+            </div>
+
+            <!-- Genomics for Smarter Breeding in Drylands – Public Talk -->
+            <div class="conference-card reveal">
+                <span class="language-flag" title="English">🇬🇧</span>
+                <img src="./IMG-20251030-WA0032.jpg" alt="Genomics for Smarter Breeding – Public Talk">
+                <div class="conference-overlay">
+                    <h3>Genomics for Smarter Breeding in Drylands – Public Talk</h3>
+                    <p>Public talk on applying genomics to climate-adaptive livestock breeding, connecting theory with local realities.</p>
+                </div>
+            </div>
+
+            <!-- Genomics Course – University of Namibia -->
+            <div class="conference-card reveal">
+                <span class="language-flag" title="English">🇬🇧</span>
+                <img src="./IMG-20251101-WA0064.jpg" alt="Genomics for Smarter Breeding – Course">
+                <div class="conference-overlay">
+                    <h3>Genomics for Smarter Breeding – Course</h3>
+                    <p>Advanced course on genomics and data analysis for climate-adaptive livestock systems in dryland contexts.</p>
+                </div>
+            </div>
+
+            <!-- Women Transform Rangelands Hackathon -->
+            <div class="conference-card reveal">
+                <span class="language-flag" title="English">🇬🇧</span>
+                <img src="./Copy of SMS_0753 (1).jpg" alt="Women Transform Rangelands Hackathon">
+                <div class="conference-overlay">
+                    <h3>Women Transform Rangelands Hackathon</h3>
+                    <p>Hackathon empowering women to use rangeland and livestock data to design policy-relevant climate resilience solutions.</p>
+                </div>
+            </div>
+
+            <!-- Career Talk – Data Science & AI Pathways -->
+            <div class="conference-card reveal">
+                <span class="language-flag" title="English">🇬🇧</span>
+                <img src="https://your-folder-path/career-talk-ai.jpg" alt="Career Talk – Data Science & AI Pathways">
+                <div class="conference-overlay">
+                    <h3>Career Talk – Data Science & AI Pathways</h3>
+                    <p>Speaker at a career session exploring pathways into data science and AI across research, government, and industry.</p>
+                </div>
+            </div>
+
+            <!-- Guest Lecture – MBA Master Class -->
+            <div class="conference-card reveal">
+                <span class="language-flag" title="English">🇬🇧</span>
+                <img src="https://your-folder-path/mba-guest-lecture.jpg" alt="Guest Lecture – MBA Master Class">
+                <div class="conference-overlay">
+                    <h3>Guest Lecture – MBA Master Class</h3>
+                    <p>Delivered guest lecture on international project management, stakeholder coordination, and global development practice.</p>
+                </div>
+            </div>
+
+
         </div>
     </div>
-</section>
-   <section class="insights-section" id="insights">
-    <div class="insights-container">
-        <div class="insights-content reveal">
-            <div class="insights-image">
-                <img src="https://thumbs.dreamstime.com/b/multiethnic-diverse-group-business-coworkers-team-meeting-discussion-top-view-modern-office-copy-space-partnership-139754388.jpg" alt="Professional consulting team in discussion">
-            </div>
-            <div class="insights-stats">
-                <div class="stat-item">
-                    <h3 class="stat-number">15</h3>
-                    <p class="stat-label">Consultants</p>
-                </div>
-                <div class="stat-item">
-                    <h3 class="stat-number">98%</h3>
-                    <p class="stat-label">Client Satisfaction</p>
-                </div>
-                <div class="stat-item">
-                    <h3 class="stat-number">10+</h3>
-                    <p class="stat-label">Years of Excellence</p>
-                </div>
-            </div>
+</div>
+
+<!-- Languages Section -->
+<div class="languages-section">
+    <h2 class="languages-title">Languages & Multilingual Practice</h2>
+<div class="languages-content" style="text-align: justify;">
+    <p>I work professionally in <strong>English, Spanish, French, Portuguese, and Italian</strong>, regularly presenting, facilitating, and producing written materials across these languages. I have studied in Germany and worked with multiple German clients, allowing me to operate confidently in German-speaking professional contexts.</p>
+    <p>I am a recognised <strong>hyperpolyglot</strong> and a member of the <strong>Hyperpolyglot Association</strong>, enabling effective cross-cultural communication beyond translation.</p>
+</div>
+
+<div class="language-bars">
+    <!-- English -->
+    <div class="lang-bar-item">
+        <div class="lang-header">
+            <span class="flag-large">🇬🇧</span>
+            <span class="lang-name">English</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 100%;">100%</div>
         </div>
     </div>
-</section>
 
+    <!-- Spanish -->
+    <div class="lang-bar-item">
+        <div class="lang-header">
+            <span class="flag-large">🇪🇸</span>
+            <span class="lang-name">Spanish</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 100%;">100%</div>
+        </div>
+    </div>
+
+    <!-- Italian -->
+    <div class="lang-bar-item">
+        <div class="lang-header">
+            <span class="flag-large">🇮🇹</span>
+            <span class="lang-name">Italian</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 100%;">100%</div>
+        </div>
+    </div>
+
+    <!-- German -->
+    <div class="lang-bar-item">
+        <div class="lang-header">
+            <span class="flag-large">🇩🇪</span>
+            <span class="lang-name">German</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 80%;">80%</div>
+        </div>
+    </div>
+
+    <!-- Portuguese (moved after German) -->
+    <div class="lang-bar-item">
+        <div class="lang-header">
+            <span class="flag-large">🇵🇹</span>
+            <span class="lang-name">Portuguese</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 70%;">70%</div>
+        </div>
+    </div>
+
+    <!-- French (moved after German) -->
+    <div class="lang-bar-item">
+        <div class="lang-header">
+            <span class="flag-large">🇫🇷</span>
+            <span class="lang-name">French</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 80%;">80%</div>
+        </div>
+    </div>
+
+    <!-- Oshiwambo -->
+    <div class="lang-bar-item">
+        <div class="lang-header">
+            <span class="flag-large">🇦🇴</span>
+            <span class="lang-name">Oshiwambo</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 40%;">40%</div>
+        </div>
+    </div>
+
+    <!-- Turkish -->
+    <div class="lang-bar-item">
+        <div class="lang-header">
+            <span class="flag-large">🇹🇷</span>
+            <span class="lang-name">Turkish</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 60%;">60%</div>
+        </div>
+    </div>
+
+    <!-- Japanese -->
+    <div class="lang-bar-item">
+        <div class="lang-header">
+            <span class="flag-large">🇯🇵</span>
+            <span class="lang-name">Japanese</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 30%;">30%</div>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+</section>
+  
+   <section class="testimonials-section" id="testimonials">
+    <div class="testimonials-container">
+        <div class="testimonials-header reveal">
+            <h2 class="testimonials-title" style="color: #EF233C;" style="margin-top: 100px;">Client Success Stories</h2>
+            <p class="testimonials-subtitle">Hear from the businesses we've helped transform</p>
+        </div>
+        
+        <div class="testimonials-carousel-wrapper reveal">
+            <button class="carousel-btn prev-btn" aria-label="Previous testimonial">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            
+            <div class="testimonials-carousel">
+                <div class="testimonials-track">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="card-inner">
+                            <div class="quote-mark">"</div>
+                            <p class="testimonial-text">Add your first client testimonial here. This design can handle as many testimonials as you need - just keep adding them!</p>
+                            <div class="testimonial-footer">
+                                <div class="author-details">
+                                    <h4 class="author-name">Client Name</h4>
+                                    <p class="author-title">CEO, Company Name</p>
+                                </div>
+                                <div class="rating">
+                                    ★★★★★
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="card-inner">
+                            <div class="quote-mark">"</div>
+                            <p class="testimonial-text">Second testimonial goes here. The carousel will smoothly scroll through all your testimonials.</p>
+                            <div class="testimonial-footer">
+                                <div class="author-details">
+                                    <h4 class="author-name">Client Name</h4>
+                                    <p class="author-title">Director, Company Name</p>
+                                </div>
+                                <div class="rating">
+                                    ★★★★★
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="card-inner">
+                            <div class="quote-mark">"</div>
+                            <p class="testimonial-text">Third testimonial. You can add as many as you want - the carousel handles it all!</p>
+                            <div class="testimonial-footer">
+                                <div class="author-details">
+                                    <h4 class="author-name">Client Name</h4>
+                                    <p class="author-title">Founder, Company Name</p>
+                                </div>
+                                <div class="rating">
+                                    ★★★★★
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more testimonials as needed - just copy and paste this structure -->
+                    <div class="testimonial-card">
+                        <div class="card-inner">
+                            <div class="quote-mark">"</div>
+                            <p class="testimonial-text">Fourth testimonial placeholder. Keep adding more!</p>
+                            <div class="testimonial-footer">
+                                <div class="author-details">
+                                    <h4 class="author-name">Client Name</h4>
+                                    <p class="author-title">Manager, Company Name</p>
+                                </div>
+                                <div class="rating">
+                                    ★★★★★
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-btn next-btn" aria-label="Next testimonial">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="carousel-dots"></div>
+    </div>
+</section>
 <section class="human-approach" id="philosophy">
     <div class="human-container">
-        
+
         <div class="human-header reveal">
-            <div class="human-line"></div>
-            <h2 class="human-title">A People-Centred <span class="headline-emphasis">Approach</span></h2>
+            
+            <h2 class="human-title"style="margin-top: -6rem;">A People-Centred <span class="headline-emphasis">Approach</span></h2>
         </div>
 
         <div class="human-panel reveal">
             <div class="human-image-side">
-                <img src="https://www.umass.edu/natural-sciences/sites/g/files/ijdqth206/files/2023-03/PhD%20Animal%20Biotech-1.jpg" alt="Research and Academic Foundation">
+                <img src="https://www.umass.edu/natural-sciences/sites/g/files/ijdqth206/files/2023-03/PhD%20Animal%20Biotech-1.jpg" alt="Research and People-Centred Approach">
                 <div class="human-number">01</div>
             </div>
             <div class="human-text-side">
-                <p class="human-lead">Despite having a strong technical background, my work has never been driven by technical considerations alone.</p>
-                <p>I graduated in biotechnology, specialized in agriculture and livestock production, and am currently completing a PhD. Along the way, I undertook a postdoctoral research fellowship in Japan focused on the application of data science in agricultural systems.</p>
-                <p>Early in my career, particularly through my work in Sub-Saharan Africa, my understanding shifted profoundly. I learned that even the most robust technical solutions do not create change unless they are culturally relevant and grounded in context and lived experience.</p>
-            </div>
-        </div>
-
-        <div class="human-panel reverse reveal">
-            <div class="human-image-side">
-                <img src="https://www.umass.edu/natural-sciences/sites/g/files/ijdqth206/files/2023-03/PhD%20Animal%20Biotech-1.jpg" alt="Cultural and Linguistic Engagement">
-                <div class="human-number">02</div>
-            </div>
-            <div class="human-text-side">
-                <p class="human-lead">I listen first, learn deeply, and only then build tools that respect the people they serve.</p>
-                <p>This realization shapes how I work. Learning to listen without prejudice has been one of the hardest and most valuable lessons of my career. Language is central to this: working professionally across Spanish, English, Italian, Portuguese, French, and German.</p>
-                <p>Being a polyglot is not simply a technical asset, but a way of building trust, understanding nuance, and producing culturally grounded, relevant work.</p>
-            </div>
-        </div>
-
-        <div class="human-panel reveal">
-            <div class="human-image-side">
-                <img src="https://www.umass.edu/natural-sciences/sites/g/files/ijdqth206/files/2023-03/PhD%20Animal%20Biotech-1.jpg" alt="Global Impact and Policymaking">
-                <div class="human-number">03</div>
-            </div>
-            <div class="human-text-side">
-                <p class="human-lead">A lens shaped by years of cross-cultural engagement and linguistic fluency.</p>
-                <p>Whether working with communities in remote regions, speaking at international forums, or collaborating with policymakers and practitioners, I bring not only technical expertise, but a genuinely people-centred lens.</p>
+                <p style="text-align: justify; line-height: 1.8; color: #ffffff; font-size: 1.1rem; margin-bottom: 2rem;">
+                    Despite a strong technical and academic background, my work has never been driven by technical considerations alone. Early in my career, I came to understand that even the strongest technical solutions do not create change unless they are culturally relevant. Working across languages and cultures has since shaped how I approach research, communication, and decision-making, and continues to guide how I collaborate with communities, institutions, and policymakers in a genuinely people-centred way.
+                </p>
+                
+               
+                    
+                    <p class="narrative-emphasis">Learning to listen without prejudice has been one of the hardest and most meaningful lessons of my career, but it was also the best one.</p>
+                
             </div>
         </div>
 
     </div>
 </section>
-<section class="connect-section" id="contact">
+<section class="connect-section" id="contact" style="margin-top: -12rem;">
     <div class="connect-wrapper reveal">
+           <div class="sector-header reveal">
+        <h2 class="sector-title" style="color: #EF233C;">Contact Me</h2>
+    </div>
+        
         <div class="connect-content">
             <div class="connect-text-side">
-                <div class="connect-badge">Contact</div>
-                <h2 class="connect-title">Let’s Work <span class="headline-emphasis">Together</span></h2>
+                <h3 class="connect-title">Let's Work <span class="headline-emphasis">Together</span></h3>
                 <p class="connect-message">
                     If you are interested in working together, exploring a project, or simply exchanging ideas, I would be glad to connect — many collaborations begin with a simple conversation over a cup of coffee.
                 </p>
@@ -3128,7 +4541,6 @@ nav.scrolled .navigation-menu li a.nav-active {
         </div>
     </div>
 </section>
-
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -3142,52 +4554,85 @@ nav.scrolled .navigation-menu li a.nav-active {
         </div>
     </footer>
 
-    <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+<script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
 
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+            // Update active class on click
+            document.querySelectorAll('#navbar a').forEach(link => link.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+
+    const revealOnScroll = () => {
+        reveals.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+
+            if (elementTop < window.innerHeight - elementVisible) {
+                element.classList.add('active');
             }
         });
+    };
 
-        // Reveal on scroll
-        const reveals = document.querySelectorAll('.reveal');
-        
-        const revealOnScroll = () => {
-            reveals.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('active');
-                }
-            });
-        };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+// Update navbar active link on scroll
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('#navbar a');
 
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll();
-    </script>
+const updateActiveNav = () => {
+    let currentSection = sections[0].getAttribute('id'); // default to first section
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150; // adjust as needed
+        if (window.scrollY >= sectionTop) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + currentSection) {
+            link.classList.add('active');
+        }
+    });
+};
+
+// Run on scroll
+window.addEventListener('scroll', updateActiveNav);
+
+// Optional: run on load
+window.addEventListener('load', updateActiveNav);
+
+</script>
+
 
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const roles = ['GRANT WRITER', 'RESEARCHER', 'PORJECT MANAGER', 'BUSINESS WOMAN', 'EDUCATOR', 'POLYGLOT'];
+    const roles = ['DATA SCIENTIST', 'SCIENTIFIC COMMUNICATOR', 'PROJECT MANAGER', 'RESEARCHER'];
     const typingElement = document.getElementById('typingText');
     let roleIndex = 0;
     let charIndex = 0;
@@ -3231,6 +4676,296 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+</script>
+<script>
+function showProjectModal(title, description, imageSrc) {
+    const modal = document.getElementById('projectModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalImage = document.getElementById('modalImage');
+
+    modalTitle.innerText = title;
+    modalDescription.innerHTML = description;
+    modalImage.src = imageSrc;
+    
+    modal.classList.add('show');
+}
+
+function closeProjectModal() {
+    const modal = document.getElementById('projectModal');
+    modal.classList.remove('show');
+}
+
+// Close modal when clicking outside
+document.getElementById('projectModal').addEventListener('click', function(event) {
+    if (event.target === this) {
+        closeProjectModal();
+    }
+});
+
+// Testimonials carousel
+const track = document.querySelector('.testimonials-track');
+const cards = document.querySelectorAll('.testimonial-card');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+const dotsContainer = document.querySelector('.carousel-dots');
+
+if (track && cards.length > 0) {
+    let currentIndex = 0;
+    
+    // Create dots
+    cards.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+    
+    const dots = document.querySelectorAll('.dot');
+    
+    function updateCarousel() {
+        const cardWidth = cards[0].offsetWidth;
+        const gap = 32; // 2rem gap
+        track.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
+        
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+    }
+    
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateCarousel();
+    }
+    
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        updateCarousel();
+    }
+    
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    
+    // Auto-play
+    setInterval(nextSlide, 6000);
+    
+    // Recalculate on resize
+    window.addEventListener('resize', updateCarousel);
+}
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleButton = document.querySelector('.mobile-menu-toggle');
+    const menu = document.querySelector('.navigation-menu');
+    const navbar = document.querySelector('.primary-navigation');
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.navigation-menu a');
+
+    /* ---------- MOBILE MENU TOGGLE ---------- */
+    toggleButton.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        toggleButton.classList.toggle('active');
+    });
+
+    /* Close menu + set active on link click */
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('open');
+            toggleButton.classList.remove('active');
+
+            navLinks.forEach(l => l.classList.remove('nav-active'));
+            link.classList.add('nav-active');
+        });
+    });
+
+    /* ---------- SCROLL-BASED ACTIVE STATE ---------- */
+    const observerOptions = {
+        root: null,
+        rootMargin: '-120px 0px -50% 0px', // accounts for fixed nav
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            const id = entry.target.getAttribute('id');
+            const activeLink = document.querySelector(
+                `.navigation-menu a[href="#${id}"]`
+            );
+
+            if (activeLink) {
+                navLinks.forEach(l => l.classList.remove('nav-active'));
+                activeLink.classList.add('nav-active');
+            }
+
+            /* Navbar scrolled state */
+            if (id === 'landing') {
+                navbar.classList.remove('scrolled');
+            } else {
+                navbar.classList.add('scrolled');
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+});
+
+</script>
+<script>
+const track2 = document.querySelector('.videos-track');
+const prevBtn2 = document.querySelector('.prev');
+const nextBtn2 = document.querySelector('.next');
+const videoContainers = document.querySelectorAll('.video-container');
+
+let currentIndex = 0;
+const totalVideos = videoContainers.length;
+
+function updateSlider() {
+    const containerWidth = videoContainers[0].offsetWidth;
+    const gap = 24; // 1.5rem gap
+    const offset = currentIndex * (containerWidth + gap);
+    track2.style.transform = `translateX(-${offset}px)`;
+    
+    // Update button states
+    prevBtn2.disabled = currentIndex === 0;
+    nextBtn2.disabled = currentIndex >= totalVideos - 1;
+}
+
+prevBtn2.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+    }
+});
+
+nextBtn2.addEventListener('click', () => {
+    if (currentIndex < totalVideos - 1) {
+        currentIndex++;
+        updateSlider();
+    }
+});
+
+// Update on window resize
+window.addEventListener('resize', updateSlider);
+
+// Initial state
+updateSlider();
+</script>
+
+<script>
+    function showProjectModal(projectId) {
+    const projectData = {
+        'project1': {
+            title: 'Harvesting Resilience: Understanding early warning systems in dryland communities in the Horn of Africa',
+            image: './project being presented.jpg',
+            sectors: 'Climate Change, Food Security, Early Warning',
+            clients: 'FAO, Jameel Observatory for Food Security Early Action, Data for Children Collaborative',
+            partners: 'Omeva Consulting (UK & Namibia), Urbanforesight (UK), Manshiil Consult (Ethiopia), Ishaamba (Kenya)',
+            about: 'This project addresses the need to better align Early Warning Systems (EWS) with the realities of pastoralist and agro-pastoralist communities in the disaster-prone Horn of Africa. Despite advances in climate and food security early warning systems, gaps remain between the information produced by formal systems and the anticipatory actions communities can take. The project examines how early warnings are communicated, interpreted, and used, drawing on literature review, assessments of websites and information dashboards, and community surveys and focus group discussions. It explores communication channels, barriers to use, and the role of Indigenous Knowledge alongside scientific forecasts. Its aim is to develop practical recommendations that strengthen the trust, relevance, and usability of early warnings, enabling more timely and effective anticipatory action to reduce climate-related risks to livelihoods and food security.',
+            roles: 'I conducted a comprehensive review of the early warning system, including a literature review, stakeholder mapping, and documentation of Indigenous Knowledge. I also analysed relevant legislation and policy frameworks and assessed the availability and usability of existing websites and information platforms, working closely with local teams, clients, and researchers to ensure the information was accurate and fit for purpose.',
+            deliverables: [
+                'De la Puerta Fernandez, M.L, Adam, A., Kirwa, L., Kiprop, C., Jensen, N., Lazarus, B., Kristensen, K., & Walker, A. 2025. Early warning systems and dryland communities in the Horn of Africa: A desk review of actors, challenges, and opportunities.',
+                'Muhandale, A., Kirwa, L., Walker, A., et al. 2026. Early warning systems and dryland communities in the Horn of Africa: Kenya country report.',
+                'Adam, A., Mohammed, N., Walker, A., et al. 2026. Early warning systems and dryland communities in the Horn of Africa: Ethiopia country report.'
+            ],
+            link: 'https://reliefweb.int/report/world/early-warning-systems-and-dryland-communities-horn-africa-desk-review-actors-challenges-and-opportunities-august-2025'
+        },
+        'project2': {
+            title: 'ICT-Enabled Avian Influenza Awareness (Bird Flu Watch) – Nigeria',
+            image: './Avian Influenza ICT.png',
+            sectors: 'Health, ICT, Early Warning',
+            clients: 'World Food Forum, Food and Agriculture Organization (FAO), Wageningen Centre for Development Innovation',
+            partners: 'Omeva Consulting, Aberystwyth University, Neglected Disease Eradication Campaign (NEDEC), Arewaladies4Tech',
+            about: 'Avian influenza poses ongoing risks to livelihoods, food security, and public health in Nigeria, particularly for smallholder poultry farmers in rural areas. Information on prevention and outbreak response often fails to reach these communities in a timely and practical way, as existing information systems are fragmented and extension services and ministries face significant resource constraints. In this context, ICT-based solutions offer potential to improve information access, coordination, and preparedness. This project conducted a baseline and feasibility assessment to explore the potential for an ICT-based application to support avian influenza awareness and biosecurity among smallholder poultry farmers in Nigeria, assessing existing knowledge, practices, information gaps, and digital access through surveys, experts interviews and focus group discussions.',
+            roles: 'As Project Manager, I led the design and implementation of a baseline and feasibility assessment on ICT-enabled avian influenza communication in Nigeria. I coordinated local partners and field teams, led an online data-collection campaign, oversaw survey design, data collection, and analysis, and ensured that findings were translated into practical recommendations.',
+            deliverables: [],
+            link: null
+        },
+        'project3': {
+            title: 'Namibia: a New and Open Dataset for Rangeland and Pasture Management',
+            image: './Lacuna Dataset.jpg',
+            sectors: 'Data Science, Rangeland Management, Digitalisation',
+            clients: 'Lacuna Fund',
+            partners: 'Farm4trade, AgriConsult Namibia, Omeva consulting, Agri-Ecological Services, and University of Namibia',
+            about: 'The project focused on developing a new, open-access dataset to support sustainable rangeland and pasture management in Namibia. Rangelands underpin livestock-based livelihoods across the country; however, decision-making is often constrained by fragmented datasets, limited access to information, and weak links between scientific monitoring and on-the-ground management needs. The project addressed these challenges by integrating field-based data collection with stakeholder engagement and applied data analysis. It brought together ecological measurements and local knowledge to produce a dataset that is both scientifically robust and practically usable. A central objective was to ensure that data products responded to real decision-making contexts, rather than remaining confined to technical or academic use, with a strong emphasis on accessibility and usability.',
+            roles: 'I served as Project Manager for the project, coordinating field, data, and communications teams and acting as the main liaison between technical experts and on-the-ground implementation. I led the digitalisation process and the development of the data platform, ensuring that diverse inputs were integrated into a coherent, accessible dataset. In parallel, I managed stakeholder relations and project communications, directing videos, newsletters, and press materials. I also designed and facilitated a participatory workshop to ensure the dataset was usable, accessible, and aligned with real decision-making needs.',
+            deliverables: [
+                'Dataset: Gewers, D., de la Puerta Fernandez, M. L., Athingo, H., van der Waal, C., del Negro, E., Routhague, A., & Tinaro, A. (2025). Namibia\'s rangeland and pasture dataset.',
+                'Manual: de la Puerta, M. L., Athingo, H., Gewers, D., et al. (2024). Namibia: A New and Open Dataset for Rangeland and Pasture Management. Dataset User Manual.'
+            ],
+            link: 'https://www.kaggle.com/datasets/farm4tradesrl/lacuna'
+        },
+        'project4': {
+            title: 'Encroacher Bush Value Chains for Climate-Resilient Agriculture (RUFORUM)',
+            image: './image2.jpg',
+            sectors: 'Climate-Resilient Agriculture, Value Chains',
+            clients: 'Regional Forum for Capacity Building in Agriculture (RUFORUM)',
+            partners: 'University of Namibia, African Wild Dog Conservancy, Okakarara Vocational Training Center, Omeva Consulting',
+            about: 'This project formed part of a broader initiative to enhance community adaptation to climate change through climate-resilient agriculture in Namibia, with a specific focus on encroacher bush value chains. Bush encroachment has significantly reduced rangeland productivity in many parts of the country, affecting livestock systems and rural livelihoods, while also presenting opportunities for sustainable value creation if managed effectively. The initiative explored how encroacher bush could be transformed from an environmental constraint into an economic and ecological resource. This included assessing bush-based commodities and value-addition pathways such as animal feed, biochar, fencing materials, and mushroom production. The work aimed to identify approaches that could improve rangeland condition, support livestock productivity, and contribute to income diversification in dryland farming systems.',
+            roles: 'As Project Manager, I conducted a baseline survey, focusing on encroaching bush-based commodities in the Africa Wild Dog Conservancy, assessing impacts on livestock productivity due to bush encroachment. Investigated the potential to turn bush encroachment into economic opportunities through value-addition in animal feed, biochar, fencing poles, and mushroom production. Collaborated with universities and local communities to research sustainable methods of bush thinning, improving rangeland productivity, and promoting biodiversity conservation.',
+            deliverables: ['Main documentary', 'Manual and brochure', 'Information platform and social media campaign'],
+            link: 'https://www.omevaconsulting.com/page-wild-dog'
+        },
+        'project5': {
+            title: 'Strengthening Civil Society Advocacy on Extractive Industries & the Green Economy',
+            image: './image4.png',
+            sectors: 'Civil Society, Advocacy, Extractive Industries, Green Economy',
+            clients: 'Namibia Development Trust (NDT), Integrated Rural Development and Nature Conservation (IRDNC)',
+            partners: 'European Union',
+            about: 'This project was focused on the development and refinement of advocacy training materials leading to a Training Manual for Trainers aimed at strengthening civil society organisations (CSOs) working on extractive industries and the emerging green economy in Namibia. The work was developed within a broader EU-funded action seeking to enhance CSO participation in transparent, accountable, and rights-based natural resource governance. The purpose of the manual is to equip trainers and facilitators with the knowledge, skills, and practical tools required to strengthen CSO advocacy efforts in contexts where extractive industries and green economy initiatives increasingly affect community rights, access to information, and benefit-sharing.',
+            roles: 'I co-authored the advocacy training manual, shaping its structure and ensuring clarity and coherence across modules. Provided content direction to align the material with the goal of strengthening civil society advocacy on extractive industries and the green economy. Led quality review and proofreading to ensure technical accuracy, consistency, and accessibility for diverse audiences, including trainers, CSOs, and community actors. Supported the final refinement of training materials for effective use in guided in-person training and independent learning contexts.',
+            deliverables: ['Advocacy training manual for participants and trainers'],
+            link: null
+        },
+        'project6': {
+            title: 'National Adaptation Plan (NAP) Strategic Communications & Outreach, Namibia',
+            image: './image3.jpg',
+            sectors: 'Climate Adaptation, Strategic Communications',
+            clients: 'Namibia Nature Foundation (NNF)',
+            partners: 'Government stakeholders involved in the NAP process, Civil society organisations, traditional authorities, youth and women\'s groups, private sector actors',
+            about: 'This project supports Namibia\'s National Adaptation Plan (NAP) process by improving how climate adaptation information is communicated and how diverse stakeholders are engaged. With increasing climate risks—including rising temperatures, unpredictable rainfall, and prolonged droughts—Namibia\'s NAP aims to integrate adaptation into national and subnational planning across key sectors and vulnerable populations. A core focus of the consultancy is the design and delivery of a strategic communications and outreach approach that builds awareness, strengthens stakeholder ownership, and supports inclusive dialogue on climate adaptation.',
+            roles: 'As Project Manager, I am leading the strategic communications and design direction for the project, ensuring clear and consistent messaging across project phases and platforms. Guide the development of branding and communication strategy components, including audience-specific messaging and stakeholder engagement alignment. Oversee the content development pipeline (visual, audio, and written outputs) to ensure accessibility for diverse audiences, including rural and multilingual communities.',
+            deliverables: ['Inception report and stakeholder mapping framework', 'NAP brand development (visual identity, templates, tone-of-voice guidelines)', 'Communications & outreach strategy', 'Validation workshop outputs and revised materials', 'Multi-format content (e.g., decks, infographics, posters in local languages, videos, radio content, newsletters, brochures)'],
+            link: null
+        }
+    };
+
+    const project = projectData[projectId];
+    if (!project) return;
+
+    const modal = document.getElementById('projectModal');
+    document.getElementById('modalImage').src = project.image;
+    
+    let modalHTML = `
+        <h2>${project.title}</h2>
+        <p><strong>Sectors:</strong> ${project.sectors}</p>
+        <p><strong>Clients:</strong> ${project.clients}</p>
+        <p><strong>Partners:</strong> ${project.partners}</p>
+        <p><strong>About the Project:</strong> ${project.about}</p>
+        <p><strong>My Roles:</strong> ${project.roles}</p>
+    `;
+    
+    if (project.deliverables.length > 0) {
+        modalHTML += '<p><strong>Deliverables:</strong></p><ul style="margin-left: 20px; line-height: 1.8;">';
+        project.deliverables.forEach(d => {
+            modalHTML += `<li>${d}</li>`;
+        });
+        modalHTML += '</ul>';
+    }
+    
+    if (project.link) {
+        modalHTML += `<p><a href="${project.link}" target="_blank" rel="noopener noreferrer">Learn more / Download</a></p>`;
+    }
+    
+    document.getElementById('modalText').innerHTML = modalHTML;
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
 </script>
 </body>
 </html>
